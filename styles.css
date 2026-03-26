@@ -1,0 +1,16 @@
+body
+{
+    background-color: #1D1E25;
+    color: #ffffff;
+}
+
+#hello
+{
+    text-align: center;
+    margin-top:0.25em;
+    margin-bottom:0.5em;
+    font-family: Lexend;
+    font-size: 8em;
+
+
+}
