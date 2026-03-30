@@ -1,8 +1,22 @@
+
+header{
+    
+    
+}
+
+nav{
+background-color: #fff;
+position: fixed;
+top:0
+width: 100%
+}
+
 body
 {
     background-color: #1D1E25;
     color: #ffffff;
 }
+
 
 #hello
 {
