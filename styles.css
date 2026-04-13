@@ -1,14 +1,25 @@
 
-header{
-    
-    
+*{
+    font-family: Lexend;
 }
 
 nav{
-background-color: #fff;
-position: fixed;
-top:0
-width: 100%
+    background-color: #1A1B21;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 64px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    
+
+
+}
+
+a:link{
+    text-decoration: none;
 }
 
 body
@@ -17,6 +28,29 @@ body
     color: #ffffff;
 }
 
+#nav-title{
+    
+}
+.nav-buttons{
+    display: flex;
+    flex-direction: row-reverse;
+    list-style: none;
+    
+}
+
+.nav-buttons li{
+    margin:12px;
+    padding:16px;
+}
+
+.nav-buttons a{
+    color: #fff;
+
+}
+
+
+        
+    
 
 #hello
 {
