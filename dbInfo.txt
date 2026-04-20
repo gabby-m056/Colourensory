@@ -1,0 +1,15 @@
+https://script.google.com/macros/s/AKfycbzum4SuXwJgPwB9F_rMWUCM9MgcQiZAwJ90n_Fa93iOqCT70V8tjNPPiWVgzuGNM6flvA/exec
+
+Deployment ID: AKfycbzum4SuXwJgPwB9F_rMWUCM9MgcQiZAwJ90n_Fa93iOqCT70V8tjNPPiWVgzuGNM6flvA
+
+
+Normalisation 
+
+User_Experiments(PK ExperimentID, UserID,PK DropID X,Y,colour,size)
+x and y are repeated groups
+User_Experiments(PK fk ExperimentID, PK UserID)
+Drops(PK ExperimentID,PK DropId, X,Y,Colour,Size)
+
+
+
+UUID

@@ -36,7 +36,7 @@ class Drop{
              //circumference = 2*PI*r
              //iterating over angles arounf circle circumference
             let angle = map(i,0,this.resolution,0,TWO_PI);
-            //vector from sine and cosine of angle
+            //vector from sine and cosine of angle - trig
             let vect = createVector(cos(angle),sin(angle));
             //scaling vector by radius
             vect.mult(this.radius);
@@ -86,9 +86,11 @@ function setup(){
 }
 
 function draw(){
+    clear()
     for(let d of droplets){
         d.drawDrop();
     }
+    
 }
 
 function mousePressed(){
@@ -101,3 +103,8 @@ function mousePressed(){
     droplets.push(newDrop);
     
 }
+
+/*
+Things to store:
+X and Y coordinates, colour and size
+*/
