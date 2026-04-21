@@ -1,5 +1,10 @@
 const mainCanvas = document.getElementById("marble-canvas");
+const downloadBtn = document.getElementById("download-canvas-button");
 let droplets =[];
+mainCanvas.addEventListener("click",canvasClicked);
+downloadBtn.addEventListener("click",downloadCanvas);
+
+
 
 class Drop{
 
@@ -14,15 +19,15 @@ class Drop{
     
     
 
-    constructor(x,y){
+    constructor(x,y,size,colour){
         this.x=x;
         this.y=y;
         this.centre = createVector(this.x,this.y);
-        this.diameter=50;
+        this.diameter=size;
         this.resolution=100
         this.radius=this.diameter/2;
         this.fillVertices();
-        this.colour = color(random(0,254))
+        this.colour = colour
 
     }
 
@@ -93,8 +98,18 @@ function draw(){
     
 }
 
-function mousePressed(){
-    let newDrop = new Drop(mouseX,mouseY);
+
+function downloadCanvas(){
+    const fileName = document.getElementById("download-canvas-filename").value;
+    const fileType = document.getElementById("download-canvas-filetype").value;
+    console.log("Name:" + fileName + " Type:" +fileType);
+    saveCanvas(fileName,fileType);
+
+}
+
+function canvasClicked(){
+    console.log("click")
+    let newDrop = new Drop(mouseX,mouseY,document.getElementById("brush-slider").value,document.getElementById("brush-colour").value);
     for(let existingDrop of droplets){
         existingDrop.displace(newDrop);
     }

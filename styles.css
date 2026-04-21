@@ -30,6 +30,7 @@ body
     padding-top: 64px;
     background-color: #1D1E25;
     color: #ffffff;
+   
 }
 
 #nav-title{
@@ -98,9 +99,27 @@ body
 
 }
 
+main
+{
+    display: flex;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+}
+
+#canvas-container{
+    width: 67vw;
+}
+
+#custom-brush-container{
+    width:33vw
+}
+
 canvas{
     
-    display: flex;
+    
     justify-self: center;
     background-color: #ffffff;
 }
