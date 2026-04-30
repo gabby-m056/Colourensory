@@ -4,21 +4,21 @@
         <meta charset="UTF-8" >
         <title>Colourensory</title>
         <!--Link your stylesheet here-->
-        <link href="styles.css" type="text/css" rel="stylesheet">
+        <link href="../styles.css" type="text/css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-     <script src="p5\p5.min.js"></script>
+     <script src="../p5/p5.min.js"></script>
     </head>
     <header>
         <nav>
             <p id="nav-title">Colourensory</p>
             <ul class="nav-buttons">
-                <li><a href="index.html">Home</a>
+                <li><a href="../Home/index.html">Home</a>
                 </li>
-                <li><a href = "play.html">Play</a>
+                <li><a href = "../Play/play.html">Play</a>
                 </li>
-                <li><a href="saved.html">Saved Experiments</a>
+                <li><a href="../Saved/saved.html">Saved Experiments</a>
                 </li>
 
             </ul>
@@ -36,20 +36,21 @@
                     <input name="slider" id="brush-slider" type="range" min="10" max="100" value="50">
                     <label for="brush-colour">Drop Colour:</label>
                     <input name="colour" id="brush-colour" type="color"> <br>
-                    <label for="download-canvas-filename">Save Image of Experiment:</label>
+                    <label for="download-canvas-filename">Download Image of Experiment:</label>
                     <input name="download-canvas" id="download-canvas-filename" type="text" value="">
                     
                     <select name="download-canvas-filetype" id="download-canvas-filetype">
                         <option value="png" >.png</option>
                         <option value="jpg" >.jpg</option>
                     </select>
-                    <input name="download-canvas" id="download-canvas-button" type="button" value="download">
-
+                    <input name="download-canvas" id="download-canvas-button" type="button" value="Download">
+                    <label for="save-canvas-button">Save Experiment:</label>
+                    <input name="save-canvas" id="save-canvas-button" type="button" value="Save">
                 </fieldset>
 
             </aside>
         </main>
-        
+        <script src="../dataManagement.js"></script>
         <script src="marbleSketch.js"></script>
     </body>
 </html>

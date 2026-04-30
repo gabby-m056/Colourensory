@@ -10,6 +10,6 @@ x and y are repeated groups
 User_Experiments(PK fk ExperimentID, PK UserID)
 Drops(PK ExperimentID,PK DropId, X,Y,Colour,Size)
 
-
-
-UUID
+if EID and UID exist - update only
+if UID exist but no EID - add with existing UID
+if both dont exist - add 

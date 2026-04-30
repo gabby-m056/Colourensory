@@ -1,8 +1,11 @@
 const mainCanvas = document.getElementById("marble-canvas");
 const downloadBtn = document.getElementById("download-canvas-button");
+const saveBtn = document.getElementById("save-canvas-button");
+let wasCanvasClicked = false;
 let droplets =[];
 mainCanvas.addEventListener("click",canvasClicked);
 downloadBtn.addEventListener("click",downloadCanvas);
+saveBtn.addEventListener("click",saveExperiment);
 
 
 
@@ -91,7 +94,7 @@ function setup(){
 }
 
 function draw(){
-    clear()
+    clear();
     for(let d of droplets){
         d.drawDrop();
     }
@@ -107,17 +110,73 @@ function downloadCanvas(){
 
 }
 
+
+
+
+
 function canvasClicked(){
-    console.log("click")
+    console.log("draw on canvas");
     let newDrop = new Drop(mouseX,mouseY,document.getElementById("brush-slider").value,document.getElementById("brush-colour").value);
+    console.log("drop:" + newDrop);
     for(let existingDrop of droplets){
         existingDrop.displace(newDrop);
     }
 
 
     droplets.push(newDrop);
-    
+    wasCanvasClicked=false;
 }
+
+/*function clearCanvas(){
+    clear();
+    droplets = [];
+    if(dataBeingUsed==true){
+        const selectData = 
+        {
+           ExperimentID: localStorage.getItem(EXPERIMENT_ID),
+        };
+        deleteData(DROP_TABLE, selectData);
+    }
+
+}*/
+
+
+
+
+function saveExperiment(){
+    if(dataBeingUsed==false){
+        dataBeingUsed=true;
+        readData();
+        checkForID(USER_ID);
+        checkForID(EXPERIMENT_ID);
+        
+    }
+
+    saveExperimentToDB(droplets);
+
+    let experimentID="E0000002"
+    if(isExistingExperiment==false){
+       
+    }
+
+    for(d=0;d<droplets.length;d++){
+        let dropToAdd={
+            ExperimentID: experimentID,
+            DropID:	d,
+            X:droplets[d].x,	
+            Y:	droplets[d].y,
+            R:	red(droplets[d].colour),
+            G:	green(droplets[d].colour),
+            B:	blue(droplets[d].colour),
+            Size:	droplets[d].diameter,
+        }
+        addData(dropToAdd);
+    }
+
+    
+
+}
+
 
 /*
 Things to store:
