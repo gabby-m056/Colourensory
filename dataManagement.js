@@ -8,7 +8,7 @@ Avoids using unnecessary storage/running unneeded API calls when not needed,
 such as when just using the canvas drawing features.*/
 let dataBeingUsed = false;
 let currentData = null;
-
+let latestValues;
 const USER_ID="UserID";
 const EXPERIMENT_ID="ExperimentID";
 
@@ -19,10 +19,10 @@ async function readData(){
         const response = await fetch(`${REMOTEDB_URL}?table=${USER_EXPERIMENTS_TABLE}`);
         const userData = await response.json();
         currentData = JSON.parse(userData.data);
-
+        latestValues = currentData[currentData.length - 1];
         console.log(userData);
         console.log(currentData);
-        checkForUserID();
+       
     }
     catch (e) {
         console.error("Error fetching data:", e);
@@ -74,6 +74,19 @@ async function deleteData(table, dataToSelect) {
     }
 }
 
+async function dataInitiated(){
+    if(dataBeingUsed==false){
+        dataBeingUsed=true;
+        await readData();
+        //checks if data has been populated as readData is async
+        
+            checkForID(USER_ID);
+            checkForID(EXPERIMENT_ID);
+        
+
+    }
+}
+
 function createID(id){
     let idToIncrement=id.slice(1);
     let incrementedID = parseInt(idToIncrement) + 1;
@@ -82,10 +95,10 @@ function createID(id){
     return incrementedID;
 }
 
-async function savetoDBUserExperiment(){
+function savetoDBUserExperiment(){
 
     let needToAddExperiment = true;
-    for(i=0;i<currentData.length;i++){
+    for(i=0;i<currentData.length-1;i++){
         //
         if(currentData[i].ExperimentID==localStorage.getItem(EXPERIMENT_ID)&&currentData[i].UserID==localStorage.getItem(USER_ID)){
             
@@ -111,7 +124,7 @@ async function savetoDBUserExperiment(){
     }
 }
 
-async function savetoDBExperimentDrops(droplets){
+function savetoDBExperimentDrops(droplets){
      for(d=0;d<droplets.length;d++){
         let dropToAdd={
             ExperimentID: localStorage.getItem(EXPERIMENT_ID),
@@ -136,11 +149,11 @@ function checkForID(idType){
     let id = localStorage.getItem(idType);
     if(id==null){
         if(idType==USER_ID){
-            tempI = createID(currentData[currentData.length - 1].UserID);
+            createUserID();
 
         }
         else if(idType==EXPERIMENT_ID){
-            id = createID(currentData[currentData.length - 1].ExperimentID);
+            id = createID(latestValues.ExperimentID.toString());
         }
         else{
             console.error("Invalid ID type: " + idType);
@@ -157,7 +170,7 @@ function checkForID(idType){
 function createUserID(){
     let idAlreadyTaken = false;
     do{
-        let generatedID = createID(currentData[currentData.length - 1].UserID);
+        let generatedID = createID(latestValues.UserID.toString());
         idAlreadyTaken = isUserIDTaken(generatedID);
         if(idAlreadyTaken===false){
             return generatedID;

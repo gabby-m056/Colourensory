@@ -142,38 +142,10 @@ function canvasClicked(){
 
 
 
-
-function saveExperiment(){
-    if(dataBeingUsed==false){
-        dataBeingUsed=true;
-        readData();
-        checkForID(USER_ID);
-        checkForID(EXPERIMENT_ID);
-        
-    }
+async function saveExperiment(){
+    await dataInitiated();
 
     saveExperimentToDB(droplets);
-
-    let experimentID="E0000002"
-    if(isExistingExperiment==false){
-       
-    }
-
-    for(d=0;d<droplets.length;d++){
-        let dropToAdd={
-            ExperimentID: experimentID,
-            DropID:	d,
-            X:droplets[d].x,	
-            Y:	droplets[d].y,
-            R:	red(droplets[d].colour),
-            G:	green(droplets[d].colour),
-            B:	blue(droplets[d].colour),
-            Size:	droplets[d].diameter,
-        }
-        addData(dropToAdd);
-    }
-
-    
 
 }
 
