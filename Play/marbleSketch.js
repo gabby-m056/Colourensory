@@ -1,9 +1,13 @@
 const mainCanvas = document.getElementById("marble-canvas");
+const newBtn = document.getElementById("new-canvas-button");
 const downloadBtn = document.getElementById("download-canvas-button");
 const saveBtn = document.getElementById("save-canvas-button");
 let wasCanvasClicked = false;
 let droplets =[];
+let saveClicked = false;
+
 mainCanvas.addEventListener("click",canvasClicked);
+newBtn.addEventListener("click",newCanvas);
 downloadBtn.addEventListener("click",downloadCanvas);
 saveBtn.addEventListener("click",saveExperiment);
 
@@ -27,7 +31,7 @@ class Drop{
         this.y=y;
         this.centre = createVector(this.x,this.y);
         this.diameter=size;
-        this.resolution=100
+        this.resolution=floor(this.diameter);
         this.radius=this.diameter/2;
         this.fillVertices();
         this.colour = colour
@@ -38,7 +42,7 @@ class Drop{
         this.vertices = []
         //Getting vertices all around the circle - more vertices the more smooth the circle is
         //vertices drawn equidistant from eachother
-       
+       console.log("resolution:" + this.resolution);
         for(let i=0;i<this.resolution;i++){
              //converting each individual point from polar(angle and radius) to cartesian(x,y coords)
              //circumference = 2*PI*r
@@ -98,7 +102,18 @@ function draw(){
     for(let d of droplets){
         d.drawDrop();
     }
+    if(saveClicked && saveToDB){
+        saveExperimentToDB(droplets);
+        saveClicked=false;
+        saveToDB=false;
+    }
     
+}
+
+function newCanvas(){
+    clear();
+    droplets = [];
+    sessionStorage.removeItem(EXPERIMENT_ID);
 }
 
 
@@ -143,9 +158,17 @@ function canvasClicked(){
 
 
 async function saveExperiment(){
-    await dataInitiated();
+    if(droplets.length==0){
+        console.log("Your canvas is empty! Draw something before saving.");
+        return;
+    }
+    else{
+        saveClicked = true;
+        await dataInitiated();
+    }
+    
 
-    saveExperimentToDB(droplets);
+    
 
 }
 
