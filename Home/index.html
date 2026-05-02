@@ -5,6 +5,7 @@
         <title>Colourensory</title>
         <!--Link your stylesheet here-->
         <link href="../styles.css" type="text/css" rel="stylesheet">
+        <link href="homeStyles.css" type="text/css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
@@ -27,10 +28,17 @@
     <body>
         
         <h1 id="hello">Hello</h1>
-        <h2 id="get-name">Please tell us your name?</h2>
-        <input name="name" id="name-input" type="text" value="">
+        <section id="first-time-user">
+            <label id="name-label" for="name-input">Please tell us your name?</label>
+            <br>
+            <input name="name" id="name-input" type="text" value="">
+            <input name="name" id="submit-name-button" type="button" value="Submit">
+        </section>
+        
+        
 
         <script src="../dataManagement.js"></script> 
+        <script src="../main.js"></script>
         <script src="home.js"></script>
     </body>
 </html>

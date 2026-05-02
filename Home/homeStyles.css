@@ -1,0 +1,12 @@
+#first-time-user {
+   align-items: center;
+    flex-direction: column;
+    
+}
+
+#name-input{
+    width:32vw;
+    height: 2vh;
+    padding: 8px;
+    
+}

@@ -11,6 +11,7 @@ let dataBeingUsed = false;
 let currentData = null;
 let latestValues;
 let saveToDB = false;
+let userDetailsData;
 const USER_ID="UserID";
 const EXPERIMENT_ID="ExperimentID";
 const USER_DETAILS="UserDetails";
@@ -21,9 +22,9 @@ async function readData(){
     try{
         const response = await fetch(`${REMOTEDB_URL}?table=${USER_EXPERIMENTS_TABLE}`);
         const jsonData = await response.json();
-        currentData = JSON.parse(data.data);
+        currentData = JSON.parse(jsonData.data);
         latestValues = currentData[currentData.length - 1];
-        console.log(data);
+        //console.log(data);
         console.log("Current Data: ", currentData);
        
     }
@@ -170,39 +171,49 @@ async function saveExperimentToDB(droplets){
 
 function checkforUserDetails(){
     // Check if user details are already stored in localStorage
-    let userDetails = localStorage.getItem(USER_DETAILS);
-    console.log("Checking for user details in localStorage: ", userDetails);
-    if(!userDetails){
-        createUserID();
+    findUserDetails();
+    console.log("Checking for user details in localStorage: ", userDetailsData);
+    if(userDetailsData===null){
+       createUserDetails();
     }
 }
 
-function checkForID(idType){
-    console.log("Checking for " + idType);
-    //let id = localStorage.getItem(idType);
-    //if(id===null){
-        if(idType==USER_ID){
-            let id = localStorage.getItem()
-            id = createUserID();
-            localStorage.setItem(USER_ID, id);
+function findUserDetails(){
+    userDetailsData = JSON.parse(localStorage.getItem(USER_DETAILS));
+}
 
-        }
-        else if(idType==EXPERIMENT_ID){
+function createUserDetails(){
+    userDetailsData = createUserID();
+        localStorage.setItem(USER_DETAILS, JSON.stringify(userDetailsData));
+}
+
+
+/*function getUserID(){
+    userDetailsData.UserID
+}
+
+function getUserName(){}*/
+
+function checkForExperimentID(){
+    console.log("Checking for experiment ID");
+    let id = sessionStorage.getItem(EXPERIMENT_ID);
+    if(id===null){
+        
+        try{
             id = createID(latestValues.ExperimentID.toString());
             sessionStorage.setItem(EXPERIMENT_ID, id);
+            console.log("New experiment created with ID: " + id);
         }
-        else{
-            console.error("Invalid ID type: " + idType);
+        catch (e) {
+            console.error("Error creating new experiment ID: ", e);
         }
+    }
+    else{
+        console.log("Existing experiment with ID: " + id);
+    }
         
-        //localStorage.setItem(idType, id);
-        console.log("New " + idType + " created with ID: " + id);
-    //}
-    //else{
-        console.log("Existing " + idType + " with ID: " + id);
-    //}
-
-}
+}  
+  
 
 function createUserID(){
     let idAlreadyTaken = false;
@@ -214,7 +225,7 @@ function createUserID(){
             
             let userDetails ={
                 UserID: generatedID,
-                UserName: "User" + generatedID.slice(1),
+                UserName: null,
             }
             return userDetails
         }
