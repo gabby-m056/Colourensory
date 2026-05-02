@@ -163,6 +163,7 @@ async function saveExperiment(){
         return;
     }
     else{
+        console.log("Saving experiment...");
         saveClicked = true;
         await dataInitiated();
     }

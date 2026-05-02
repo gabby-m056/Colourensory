@@ -98,8 +98,8 @@ async function dataInitiated(){
             await readData();
         //checks if data has been populated as readData is async
         
-            checkForID(USER_ID);
-            checkForID(EXPERIMENT_ID);
+            checkforUserDetails();
+            checkForExperimentID();
             saveToDB=true;
         }
         catch (e) {
@@ -160,6 +160,7 @@ function savetoDBExperimentDrops(droplets){
             B:	blue(droplets[d].colour),
             Size:	droplets[d].diameter,
         }
+        console.log("Adding drop to database: ", dropToAdd);
         addData(DROP_TABLE, dropToAdd);
     }
 }
