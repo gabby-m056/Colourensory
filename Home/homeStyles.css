@@ -4,9 +4,26 @@
     
 }
 
+#name-input-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    margin-top: 2vh;
+}
+    
+
 #name-input{
-    width:32vw;
-    height: 2vh;
+    width:25vw;
+    height: 3.33333333333vh;
     padding: 8px;
     
+}
+#submit-name-button{
+    width: 8vw;
+    height: 3.33333333333%;
+     padding: 8px;
+    font-size: 1.125em;
+    background-color: #d3d2f7;
+    border-radius: 0.25em;
+    border-color: #fff;
 }

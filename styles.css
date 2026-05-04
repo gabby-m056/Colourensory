@@ -4,7 +4,7 @@
 }
 
 nav{
-    background-color: #1A1B21;
+    background-color:#0D0E19; /*#1A1B21;*/
     position: fixed;
     top:0;
     left:0;
@@ -117,7 +117,12 @@ section{
     width:33vw
 }
 
-
+.nav-buttons a:hover{
+    color: #d3d2f7;
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
+    transition: 0.3s;
+}
 
 canvas{
     
