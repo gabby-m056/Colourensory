@@ -15,7 +15,29 @@ let userDetailsData;
 const USER_ID="UserID";
 const EXPERIMENT_ID="ExperimentID";
 const USER_DETAILS="UserDetails";
+//JS doesn't support enums so this is the best equivalent
+const Type={
 
+    MARBLE: "marble",
+    BLEND: "blend"
+
+}
+
+
+
+class Experiment{
+    id;
+    img;
+    experimentMarks=[];
+    type;
+
+    constructor(marksArray){
+        this.id=sessionStorage.getItem(EXPERIMENT_ID);
+        this.img=saveCanvasAsImage();
+        this.experimentMarks = marksArray;
+        this.type=Type.MARBLE;
+    }
+}
 
 async function readData(){
 
@@ -62,7 +84,7 @@ async function addData(table, dataToAdd) {
         });
         // Step 2. Convert the response to JSON format
         const result = await response.json();
-        console.log(result);
+        console.log(table, result);
     } catch (error) {
         console.error("Error adding data:", error);
     }
@@ -119,8 +141,8 @@ function createID(id){
     return incrementedID;
 }
 
-function savetoDBUserExperiment(){
-
+function savetoDBUserExperiment(experiment){
+    console.log(experiment);
     let needToAddExperiment = true;
     for(i=0;i<currentData.length-1;i++){
         //
@@ -137,9 +159,14 @@ function savetoDBUserExperiment(){
     }
      //record doesn't exist so create new experiment record
     if(needToAddExperiment===true){
+        experiment.id = sessionStorage.getItem(EXPERIMENT_ID);
+        let userIDToSave = localStorage.getItem(USER_DETAILS);
+        console.log("user ",userIDToSave);
         let experimentData = {
-            ExperimentID: sessionStorage.getItem(EXPERIMENT_ID),
-            UserID: localStorage.getItem(USER_ID),
+            ExperimentID: experiment.id,
+            UserID: JSON.parse(userIDToSave).UserID,
+            Type: experiment.type,
+            Image:experiment.img
         }
         console.log("No existing experiment record found for user, creating new record");
 
@@ -148,26 +175,28 @@ function savetoDBUserExperiment(){
     }
 }
 
-function savetoDBExperimentDrops(droplets){
-     for(d=0;d<droplets.length;d++){
+function savetoDBExperimentDrops(experiment){
+     for(d=0;d<experiment.experimentMarks.length;d++){
         let dropToAdd={
-            ExperimentID: sessionStorage.getItem(EXPERIMENT_ID),
-            DropID:	d,
-            X:droplets[d].x,	
-            Y:	droplets[d].y,
-            R:	red(droplets[d].colour),
-            G:	green(droplets[d].colour),
-            B:	blue(droplets[d].colour),
-            Size:	droplets[d].diameter,
+            ExperimentID: experiment.id,
+            DropID:	d.toString(),
+            X:experiment.experimentMarks[d].x,	
+            Y:	experiment.experimentMarks[d].y,
+            R:	red(experiment.experimentMarks[d].colour).toString(),
+            G:	green(experiment.experimentMarks[d].colour).toString(),
+            B:	blue(experiment.experimentMarks[d].colour).toString(),
+            Size:	experiment.experimentMarks[d].diameter,
+            
+            
         }
         console.log("Adding drop to database: ", dropToAdd);
         addData(DROP_TABLE, dropToAdd);
     }
 }
 
-async function saveExperimentToDB(droplets){
-    await savetoDBUserExperiment();
-    await savetoDBExperimentDrops(droplets);
+async function saveExperimentToDB(experiment){
+    await savetoDBUserExperiment(experiment);
+    await savetoDBExperimentDrops(experiment);
 }
 
 function checkforUserDetails(){
@@ -248,4 +277,12 @@ function isUserIDTaken(generatedID){
         
     }
     return false;
+}
+
+function saveCanvasAsImage(){
+    const fileName = document.getElementById("download-canvas-filename").value;
+    const fileType = document.getElementById("download-canvas-filetype").value ?? ".jpg";
+    let currentExperimentImage=fileName+fileType;
+    return currentExperimentImage
+   
 }

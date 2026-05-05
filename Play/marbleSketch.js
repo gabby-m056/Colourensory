@@ -6,10 +6,12 @@ let wasCanvasClicked = false;
 let droplets =[];
 let saveClicked = false;
 
+
 mainCanvas.addEventListener("click",canvasClicked);
 newBtn.addEventListener("click",newCanvas);
 downloadBtn.addEventListener("click",downloadCanvas);
 saveBtn.addEventListener("click",saveExperiment);
+
 
 
 
@@ -23,6 +25,8 @@ class Drop{
     resolution;
     vertices;
     colour;
+    image;
+    
     
     
 
@@ -99,11 +103,16 @@ function setup(){
 
 function draw(){
     clear();
+    if(droplets.length===0){
+        sessionStorage.removeItem(EXPERIMENT_ID);
+    }
     for(let d of droplets){
         d.drawDrop();
     }
     if(saveClicked && saveToDB){
-        saveExperimentToDB(droplets);
+        let experimentToSave = new Experiment(droplets);
+        console.log(experimentToSave);
+        saveExperimentToDB(experimentToSave);
         saveClicked=false;
         saveToDB=false;
     }
@@ -116,11 +125,17 @@ function newCanvas(){
     sessionStorage.removeItem(EXPERIMENT_ID);
 }
 
+function saveCanvasAsImage(){
+    const fileName = document.getElementById("download-canvas-filename").value;
+    const fileType = document.getElementById("download-canvas-filetype").value ?? ".jpg";
+    let currentExperimentImage=fileName+fileType;
+    return currentExperimentImage
+   
+}
 
 function downloadCanvas(){
-    const fileName = document.getElementById("download-canvas-filename").value;
-    const fileType = document.getElementById("download-canvas-filetype").value;
-    console.log("Name:" + fileName + " Type:" +fileType);
+    
+    let imageToSave = saveCanvasAsImage();
     saveCanvas(fileName,fileType);
 
 }

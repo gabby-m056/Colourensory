@@ -1,0 +1,23 @@
+:root{
+    --circle-blend-mode: normal;
+    --circle-colour:#95327f;
+}
+
+
+
+
+#brush-colour{
+    initial-value: var(--circle-colour);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#blend-instructions{
+    flex-direction: column;
+    width: 60vw;
+    text-align: center;
+}
