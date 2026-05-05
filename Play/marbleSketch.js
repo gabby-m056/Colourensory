@@ -126,9 +126,20 @@ function newCanvas(){
 }
 
 function saveCanvasAsImage(){
-    const fileName = document.getElementById("download-canvas-filename").value;
-    const fileType = document.getElementById("download-canvas-filetype").value ?? ".jpg";
-    let currentExperimentImage=fileName+fileType;
+    let fileName = document.getElementById("download-canvas-filename").value ?? sessionStorage.getItem(EXPERIMENT_ID);
+    let fileType = document.getElementById("download-canvas-filetype").value ?? ".jpg";
+    if(fileName===""){
+        let tempFname = sessionStorage.getItem(EXPERIMENT_ID);
+        fileName=  tempFname ?? "myExperiment";
+        console.log("fname ",fileName)
+    }
+    console.log("filename: ",fileType, "filetype ", fileType)
+    let currentExperimentImage=
+    [
+        fileName,
+        fileType
+    ]
+    
     return currentExperimentImage
    
 }
@@ -136,7 +147,7 @@ function saveCanvasAsImage(){
 function downloadCanvas(){
     
     let imageToSave = saveCanvasAsImage();
-    saveCanvas(fileName,fileType);
+    saveCanvas(imageToSave[0],imageToSave[1]);
 
 }
 
