@@ -8,7 +8,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-     <script src="../p5/p5.min.js"></script>
+     <script src="../libraries/p5/p5.min.js"></script>
+      <script src="../libraries/iro.min.js"></script>
     </head>
     <header>
         <nav>
@@ -36,7 +37,11 @@
                     <label for="brush-slider">Size:</label>
                     <input name="slider" id="brush-slider" type="range" min="10" max="100" value="50">
                     <label for="brush-colour">Drop Colour:</label>
-                    <input name="colour" id="brush-colour" type="color"> <br>
+                    
+                    <div id="brush-colour" type="color"></div> <br>
+                    <label for="colour-hex-value">Hex Value:</label>
+                    <input name="colour" id="colour-hex-value" type="text" value="#000000">
+                    
                     <label for="download-canvas-filename">Download Image of Experiment:</label>
                     <input name="download-canvas" id="download-canvas-filename" type="text" value="">
                     

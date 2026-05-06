@@ -2,11 +2,40 @@ const mainCanvas = document.getElementById("marble-canvas");
 const newBtn = document.getElementById("new-canvas-button");
 const downloadBtn = document.getElementById("download-canvas-button");
 const saveBtn = document.getElementById("save-canvas-button");
+let colourPicker = new iro.ColorPicker(document.getElementById("brush-colour"),{
+    width: 320,
+    color: "#95327f",
+    display: "flex",
+    layout: [
+    { 
+      component: iro.ui.Box,
+      options: {}
+    },
+    {
+        component: iro.ui.Slider,
+        options: {
+        // can also be 'saturation', 'value', 'red', 'green', 'blue', 'alpha' or 'kelvin'
+        sliderType: 'hue'
+        }
+    },
+   /* {
+        component: iro.ui.Slider,
+        options: {
+        // can also be 'saturation', 'value', 'red', 'green', 'blue', 'alpha' or 'kelvin'
+        sliderType: 'alpha'
+        }
+    },*/
+  ],
+  layoutDirection:"horizontal"
+
+
+});
 let wasCanvasClicked = false;
 let droplets =[];
 let saveClicked = false;
 
-
+colourPicker.addEventListener("input",changeColour);
+colourPicker.addEventListener("keydown",hexColourInputActive)
 mainCanvas.addEventListener("click",canvasClicked);
 newBtn.addEventListener("click",newCanvas);
 downloadBtn.addEventListener("click",downloadCanvas);
@@ -35,7 +64,7 @@ class Drop{
         this.y=y;
         this.centre = createVector(this.x,this.y);
         this.diameter=size;
-        this.resolution=floor(this.diameter);
+        this.resolution=floor(this.diameter*3);
         this.radius=this.diameter/2;
         this.fillVertices();
         this.colour = colour
@@ -103,6 +132,11 @@ function setup(){
 
 function draw(){
     clear();
+    //if(checkHexInput()===false){
+        document.getElementById("colour-hex-value").value = colourPicker.color.hexString;
+    //}
+    
+     
     if(droplets.length===0){
         sessionStorage.removeItem(EXPERIMENT_ID);
     }
@@ -118,6 +152,50 @@ function draw(){
     }
     
 }
+
+function hexColourInputActive(){
+    changeColour();
+    document.getElementById("colour-hex-value").value="#"
+    return true;
+}
+
+function checkHexInput(){
+    if(hexColourInputActive()===true){
+       return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+function changeColour(){
+    let changeToColour = document.getElementById("colour-hex-value").value;
+    
+        if(changeToColour.length===6){
+            if(isAlphaNumeric(changeToColour)===true){
+                let addHashtoColour = "#"+ changeToColour;
+                changeToColour = addHashtoColour;
+            }
+            else{
+                return;
+            }
+        }
+        else if(changeToColour.length===7){
+            if(changeToColour.charAt(0)!=="#"||isAlphaNumeric(changeToColour.substring(1,6))===false){
+                return;
+            }
+        }
+        else{
+            return;
+        }
+        colourPicker.color.hexString = changeToColour;
+    
+}
+
+
+
+
 
 function newCanvas(){
     clear();
@@ -157,7 +235,7 @@ function downloadCanvas(){
 
 function canvasClicked(){
     console.log("draw on canvas");
-    let newDrop = new Drop(mouseX,mouseY,document.getElementById("brush-slider").value,document.getElementById("brush-colour").value);
+    let newDrop = new Drop(mouseX,mouseY,document.getElementById("brush-slider").value, colourPicker.color.rgbaString);
     console.log("drop:" + newDrop);
     for(let existingDrop of droplets){
         existingDrop.displace(newDrop);
