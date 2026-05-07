@@ -7,7 +7,9 @@
 
 }
 
-
+#custom-brush-fields{
+    color: #fff;
+}
 
 .play-btn-card:hover{
     background-color: #D3D2F7;
