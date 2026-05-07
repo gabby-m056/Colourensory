@@ -1,9 +1,11 @@
 
 *{
-    font-family: Lexend, Arial, Helvetica, sans-serif;
+   
+    font-family: Lexend, "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
 nav{
+    
     background-color:#0D0E19; /*#1A1B21;*/
     position: fixed;
     top:0;
@@ -28,9 +30,31 @@ header{
 body
 {
     padding-top: 64px;
-    background-color: #1B1C29;
+    background-color: #171F30;
     color: #ffffff;
    
+}
+
+main{
+    background-color: #171F30;
+    margin-left: 5vw;
+    margin-right:5vw;
+}
+
+canvas{
+    background-color: #fff;
+}
+
+p{
+    margin-top: 1rem;
+}
+
+ul{
+    margin-top: 1rem;
+}
+
+button{
+    border-radius: 5em;
 }
 
 #nav-title{
@@ -62,9 +86,38 @@ body
 
 }
 
+.cta-buttons{
+    background-color:#6762f4;
+    color:#ffffff;
+}
 
-        
-    
+.cta-buttons:hover{
+    background-color:#4541A4;
+    color:#ffffff;
+}
+
+.normal-buttons-white-bg{
+    background-color: #0D0E19;
+    color: #ffffff;
+}
+.normal-buttons-white-bg:hover{
+    background-color: #3D3F53;
+    color: #ffffff;
+}
+
+.normal-buttons-dark-bg{
+    background-color: #d3d2f7;
+    color:#0d0e19;
+}
+
+.normal-buttons-dark-bg:hover{
+    background-color: #ADABF0;
+    color:#0d0e19;
+}
+       
+.card-white-text-colour{
+   color:#0d0e19;
+}   
 
 #hello
 {
@@ -105,16 +158,16 @@ main
 }
 
 section{
+    margin:0;
     display: flex;
     justify-content: center;
 }
 
-#canvas-container{
-    width: 67vw;
-}
+
 
 #custom-brush-container{
-    width:33vw
+    justify-content: center;
+    
 }
 
 .nav-buttons a:hover{

@@ -34,8 +34,8 @@ let wasCanvasClicked = false;
 let droplets =[];
 let saveClicked = false;
 
-colourPicker.addEventListener("input",changeColour);
-colourPicker.addEventListener("keydown",hexColourInputActive)
+//colourPicker.addEventListener("input",changeColour);
+//colourPicker.addEventListener("keydown",hexColourInputActive)
 mainCanvas.addEventListener("click",canvasClicked);
 newBtn.addEventListener("click",newCanvas);
 downloadBtn.addEventListener("click",downloadCanvas);
@@ -126,12 +126,16 @@ class Drop{
 }
 
 function setup(){
-    createCanvas(800,500,mainCanvas);
+    //let w = windowWidth*0.51979166666;
+    //let h = windowHeight*0.33125;
+    createCanvas(998,636,mainCanvas);
+    background(255);
     
 }
 
 function draw(){
     clear();
+    background(255);
     //if(checkHexInput()===false){
         document.getElementById("colour-hex-value").value = colourPicker.color.hexString;
     //}

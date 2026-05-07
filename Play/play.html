@@ -4,11 +4,16 @@
         <meta charset="UTF-8" >
         <title>Colourensory</title>
         <!--Link your stylesheet here-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="../styles.css" type="text/css" rel="stylesheet">
+        <link href="play.css" type="text/css" rel="stylesheet">
+        
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-     <script src="../libraries/p5/p5.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     
+    <script src="../libraries/p5/p5.min.js"></script>
       <script src="../libraries/iro.min.js"></script>
     </head>
     <header>
@@ -26,39 +31,27 @@
         </nav>
     </header>
     <body>
-        <main id="marble-experiment" class="experiments">
-            <section id = "canvas-container">
-                <canvas id="marble-canvas" width="600px" height="400px"></canvas>
-            </section>
-            
-            <aside id="custom-brush-container">
-                <fieldset id="custom-brush-fields">
-                    <input name="new-canvas" id="new-canvas-button" type="button" value="New Experiment"> <br>
-                    <label for="brush-slider">Size:</label>
-                    <input name="slider" id="brush-slider" type="range" min="10" max="100" value="50">
-                    <label for="brush-colour">Drop Colour:</label>
-                    
-                    <div id="brush-colour" type="color"></div> <br>
-                    <label for="colour-hex-value">Hex Value:</label>
-                    <input name="colour" id="colour-hex-value" type="text" value="#000000">
-                    
-                    <label for="download-canvas-filename">Download Image of Experiment:</label>
-                    <input name="download-canvas" id="download-canvas-filename" type="text" value="">
-                    
-                    <select name="download-canvas-filetype" id="download-canvas-filetype">
-                        <option value="jpg" >.jpg</option>
-                        <option value="png" >.png</option>
-                        
-                    </select>
-                    <input name="download-canvas" id="download-canvas-button" type="button" value="Download">
-                    <label for="save-canvas-button">Save Experiment:</label>
-                    <input name="save-canvas" id="save-canvas-button" type="button" value="Save">
-                </fieldset>
-
-            </aside>
-        </main>
+        <main>
+            <!--This code is based upon an example from the Bootstrap Card CSS Tutorial
+            Author: Bootstrap
+            Location: https://www.w3schools.com/html/html_comments.asp
+            Accessed: 07/05/2026-->
+       <a href="marble.html" class="btn card play-btn-card" id="marble-btn-card">
+            <img src="playCardImages/marbleImg.jpg" class="card-img-top" alt="marble">
+            <div class="card-body">
+                <h5 class="card-title card-white-text-colour play-btn-card-title">Marble</h5>
+                <p class="card-text">Experiment with Digital Marbling!</p>
+            </div>
+        </a>
+        <a href="../BlendModes/blend.html" class="btn card play-btn-card" id="blend-btn-card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title card-white-text-colour play-btn-card-title">Blend</h5>
+                <p class="card-text">Experiment with Digital Blend Modes!</p>
+            </div>
+        </a>
         <script src="../dataManagement.js"></script>
         <script src="../main.js"></script>
-        <script src="marbleSketch.js"></script>
+        </main>
     </body>
 </html>
