@@ -1,9 +1,17 @@
 const mainCanvas = document.getElementById("blend-canvas");
 const colourPicker = document.getElementById("brush-colour");
+let previousBtn;
+let selectedBlendMode = document.getElementById("blend-mode-select");
+let currentBlendMode;
+selectedBlendMode.addEventListener("click", (clickEvent)=>{
+    currentBlendMode=clickEvent.target;
+    console.log(currentBlendMode);
+    selectedMode();
+})
 //const cssColour = document.documentElement.style.getPropertyValue("--circle-colour");
 
 let marks = [];
-let b = 0;
+let currentBlendModeNo = 0;
 
 class Mark{
     
@@ -27,7 +35,7 @@ class Mark{
         fill(this.colour);
         blendMode(blendModes[this.blendModeNo]);
         
-        circle(this.x,this.y,200);
+        circle(this.x,this.y,250);
     }
 }
 
@@ -49,7 +57,7 @@ function randomColour()
 
 function draw(){
     clear();
-     document.getElementById("blend-mode").innerHTML = "Blend Mode: "+ blendModes[b];
+     document.getElementById("blend-mode").innerHTML = "Blend Mode: "+ showBlendModeText();
     /*if(marks.length>0){
         marks[marks.length-1].x = mouseX;
         marks[marks.length-1].y = mouseY;
@@ -59,7 +67,7 @@ function draw(){
         m.drawMark();
 
     }
-    
+   
     
 
     /*if(keyCode===ENTER){
@@ -71,19 +79,72 @@ function draw(){
 function mousePressed(){
    
     colour = colourPicker.value;
-    let mark = new Mark(mouseX,mouseY,colour,b);
-    marks.push(mark);
+    if(mouseX>0&&mouseX<width&&mouseY>0&&mouseY<height){
+        let mark = new Mark(mouseX,mouseY,colour,currentBlendModeNo);
+        marks.push(mark);
    
-    console.log(blendModes[b]);
-    console.log(marks.length);
-     b++;
-    if(b===blendModes.length){
-        b=0;
+        console.log(blendModes[currentBlendModeNo]);
+        console.log(marks.length);
+        
+    }
+    
+    
+}
+
+
+
+function showBlendModeText(){
+    try{
+        return currentBlendMode.innerText;
+    }
+    //if there is no blend mode selected by user input
+    catch(e){
+        let blendModeTxt = blendModes[currentBlendModeNo];
+        let finalTxt= blendModeTxt.charAt(0).toUpperCase() + blendModeTxt.substring(1,blendModeTxt.length);
+        return finalTxt
     }
 }
 
 function selectedMode(){
-    let blendMode = document.getElementById("blend-mode-select");
-    
 
+    let blendModeBtns = document.getElementsByClassName("btn-blend-mode")
+    for(let btn of blendModeBtns){
+        if(btn!==currentBlendMode){
+            btn.classList.remove('active');
+        }
+    }
+
+    if(currentBlendMode.innerText==="Darken"){
+        currentBlendModeNo=0;
+    }
+    if(currentBlendMode.innerText==="Lighten"){
+        currentBlendModeNo=1;
+    }
+    if(currentBlendMode.innerText==="Difference"){
+        currentBlendModeNo=2;
+    }
+    if(currentBlendMode.innerText==="Multiply"){
+        currentBlendModeNo=3;
+    }
+    if(currentBlendMode.innerText==="Exclusion"){
+        currentBlendModeNo=4;
+    }
+    if(currentBlendMode.innerText==="Screen"){
+        currentBlendModeNo=5;
+    }
+    if(currentBlendMode.innerText==="Overlay"){
+        currentBlendModeNo=6;
+    }
+    if(currentBlendMode.innerText==="Hard Light"){
+        currentBlendModeNo=7;
+    }
+    if(currentBlendMode.innerText==="Soft Light"){
+        currentBlendModeNo=8;
+    }
+    if(currentBlendMode.innerText==="Dodge"){
+        currentBlendModeNo=9;
+    }
+    if(currentBlendMode.innerText==="Burn"){
+        currentBlendModeNo=10;
+    }
 }

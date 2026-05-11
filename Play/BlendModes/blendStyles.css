@@ -20,3 +20,6 @@ main{
     width: 60vw;
     text-align: center;
 }
+#blend-mode-container{
+    margin:1em;
+}

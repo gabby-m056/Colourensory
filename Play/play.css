@@ -8,12 +8,15 @@
 }
 
 .fieldset-card{
+    /*display: flex;*/
     font-weight: 300;
     margin:1em;
     border-radius: 1em;
 }
 
-
+.btn-canvas{
+   margin:0.5rem;
+}
 
 
 
@@ -26,4 +29,26 @@
     align-self: flex-start;
     text-align: left;
 }
+
+#marble-canvas-heading{
+    margin-bottom:2rem;
+}
+
+
+
+#new-canvas-button{
+    padding-left:1em;
+    margin-right:1em ;
+}
+
+#save-canvas-button{
+    margin-left:1em;
+    justify-self: flex-end;
+}
+
+#canvas-button-container{
+    display: flex;
+    justify-content: center;
+}
+
 

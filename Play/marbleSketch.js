@@ -128,7 +128,7 @@ class Drop{
 function setup(){
     //let w = windowWidth*0.51979166666;
     //let h = windowHeight*0.33125;
-    createCanvas(750,550,mainCanvas);
+    createCanvas(760,560,mainCanvas);
     background(255);
     
 }
@@ -140,10 +140,12 @@ function draw(){
         document.getElementById("colour-hex-value").value = colourPicker.color.hexString;
     //}
     
+    
      
     if(droplets.length===0){
         sessionStorage.removeItem(EXPERIMENT_ID);
     }
+    
     for(let d of droplets){
         d.drawDrop();
     }
@@ -239,6 +241,7 @@ function downloadCanvas(){
 
 function canvasClicked(){
     console.log("draw on canvas");
+    
     let newDrop = new Drop(mouseX,mouseY,document.getElementById("brush-slider").value, colourPicker.color.rgbaString);
     console.log("drop:" + newDrop);
     for(let existingDrop of droplets){

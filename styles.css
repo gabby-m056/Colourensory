@@ -114,8 +114,7 @@ button{
     color:#0d0e19;
 }
 
-.normal-buttons-dark-bg:hover, .btn-secondary:active, 
-.btn-secondary:active:focus, 
+.normal-buttons-dark-bg:hover,  
 .btn-secondary.active{
     background-color: #ADABF0;
     color:#0d0e19;
@@ -175,13 +174,10 @@ section{
     justify-content: center;
 }
 
-
-
 .btn-group-no-gap{
     display: flex;
+    flex-direction: row;
 } 
-
-
 
 .button-start{
     border-top-right-radius:0;

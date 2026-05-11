@@ -34,7 +34,7 @@
             <div class="row g-1 container">
                 <div class="col-md-7">
                     <section id = "canvas-container">
-                        <h2>Digital Marbling</h2>
+                        <h2 id="marble-canvas-heading">Digital Marbling</h2>
                         <canvas id="marble-canvas"></canvas>
                     </section>
                 </div>
@@ -45,8 +45,11 @@
                         <div id="custom-brush-card" class="card-body card-white-text-colour fieldset-card">
 
                             <fieldset id="custom-brush-fields">
-                                <input name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-white-bg" type="button" value="New Experiment">
-                                <input name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons" type="button" value="Save Experiment">
+                                <div id="canvas-button-container" class="container">
+                                    <input name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-white-bg" type="button" value="New Experiment">
+                                    <input name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons" type="button" value="Save Experiment">
+                                </div>
+                                
                                 <br>
                                 <label for="brush-slider" >Size:</label><br>
                                 <input name="slider" id="brush-slider" class="form-range" type="range" min="10" max="100" value="50"><br>
