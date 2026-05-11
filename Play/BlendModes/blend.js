@@ -13,6 +13,29 @@ selectedBlendMode.addEventListener("click", (clickEvent)=>{
 let marks = [];
 let currentBlendModeNo = 0;
 
+let blendModeInfo =[
+
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, checks both colours RGB values and keeps the lowest red, green and blue value between both colours. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, checks both colours RGB values and keeps the highest red, green and blue value between both colours. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, checks both colours RGB values and subtracts each smaller red,green and blue value from the larger red,green and blue value. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, and multiplies both colours RGB values together to make a new value. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, and subtracts RGB values similar to Difference. However, mid-tone colour values are given a more subtle and muted colour as the contrast between both colours is reduced compared to Difference mode. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, inverts both colours, multiplies the inverted RGB values together to make a new value and inverts it back. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, checks the colour underneath's RGB value, if each RGB value is dark it applies Multiply Mode and if it is light it applies Screen Mode. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, checks the dropped colour's RGB value, if each RGB value is dark it applies Multiply Mode and if it is light it applies Screen Mode. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, checks the dropped colour's RGB value and applies Multiply or Screen Mode like Hard Light but squares the values to reduce the contrast. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, lightening the colour underneath based on the dropped colour's RGB value by decreasing the contrast between layers. Try dropping different colours and see what happens!",
+    "This blend mode compares the colour of the mark you drop with the colour underneath it, darkening the colour underneath based on the dropped colour's RGB value by increasing the contrast between layers. Try dropping different colours and see what happens!"
+
+
+
+    
+
+    
+
+    
+]
+
 class Mark{
     
     x;
@@ -57,7 +80,7 @@ function randomColour()
 
 function draw(){
     clear();
-     document.getElementById("blend-mode").innerHTML = "Blend Mode: "+ showBlendModeText();
+     document.getElementById("blend-mode-heading").innerHTML = "Blend Mode: "+ showBlendModeText();
     /*if(marks.length>0){
         marks[marks.length-1].x = mouseX;
         marks[marks.length-1].y = mouseY;
@@ -147,4 +170,8 @@ function selectedMode(){
     if(currentBlendMode.innerText==="Burn"){
         currentBlendModeNo=10;
     }
+
+    
+    let blendModeExplanation = document.getElementById("blend-mode-explanation");
+    blendModeExplanation.textContent=blendModeInfo[currentBlendModeNo];
 }
