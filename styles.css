@@ -122,7 +122,14 @@ button{
     background-color: #ADABF0;
     color:#0d0e19;
 }
-       
+  
+#welcome{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.25em;
+}
 .card-white-text-colour{
     background-color: #fff;
    color:#0d0e19;
@@ -140,8 +147,8 @@ button{
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: gradient-move 5s ease infinite
-
+    animation: gradient-move 5s ease infinite;
+    font-weight:800;
 
 
 }
