@@ -2,14 +2,21 @@
     width:29.1666666667vw;
     height:60vh;
     align-items: flex-start;
-    padding:1em
+    padding:1em;
+    border-radius: 1em;
    
 
 }
 
-#custom-brush-fields{
-    color: #fff;
+.fieldset-card{
+    font-weight: 300;
+    margin:1em;
+    border-radius: 1em;
 }
+
+
+
+
 
 .play-btn-card:hover{
     background-color: #D3D2F7;

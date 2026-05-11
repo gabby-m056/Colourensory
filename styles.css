@@ -10,7 +10,7 @@ nav{
     position: fixed;
     top:0;
     left:0;
-    width: 100vw;
+    width: 100%;
     height: 64px;
     display: flex;
     align-items: center;
@@ -39,6 +39,7 @@ main{
     background-color: #171F30;
     margin-left: 5vw;
     margin-right:5vw;
+    display: flex;
 }
 
 canvas{
@@ -86,12 +87,17 @@ button{
 
 }
 
-.cta-buttons{
+.btn-primary,.btn-secondary{
+    border: none;
+    outline:none;
+}
+
+.btn-primary{
     background-color:#6762f4;
     color:#ffffff;
 }
 
-.cta-buttons:hover{
+.btn-primary:hover{
     background-color:#4541A4;
     color:#ffffff;
 }
@@ -110,12 +116,15 @@ button{
     color:#0d0e19;
 }
 
-.normal-buttons-dark-bg:hover{
+.normal-buttons-dark-bg:hover, .btn-secondary:active, 
+.btn-secondary:active:focus, 
+.btn-secondary.active{
     background-color: #ADABF0;
     color:#0d0e19;
 }
        
 .card-white-text-colour{
+    background-color: #fff;
    color:#0d0e19;
 }   
 
@@ -152,10 +161,7 @@ button{
 
 }
 
-main
-{
-    display: flex;
-}
+
 
 section{
     margin:0;
@@ -163,7 +169,25 @@ section{
     justify-content: center;
 }
 
+.btn-group-no-gap{
+    display: flex;
+} 
 
+
+
+.button-start{
+    border-top-right-radius:0;
+    border-bottom-right-radius: 0;
+}
+
+.button-middle{
+    border-radius: 0;
+}
+
+.button-end{
+    border-top-left-radius: 0;
+    border-bottom-left-radius:0;
+}
 
 #custom-brush-container{
     justify-content: center;

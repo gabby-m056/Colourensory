@@ -6,6 +6,7 @@
         <!--Link your stylesheet here-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="../styles.css" type="text/css" rel="stylesheet">
+        <link href="play.css" type="text/css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
@@ -20,7 +21,7 @@
             <ul class="nav-buttons">
                 <li><a href="../Home/index.html">Home</a>
                 </li>
-                <li><a href = "../Play/play.html">Play</a>
+                <li><a href = "play.html">Play</a>
                 </li>
                 <li><a href="../Saved/saved.html">Saved Experiments</a>
                 </li>
@@ -35,29 +36,46 @@
             </section>
             
             <aside id="custom-brush-container">
-                
-                <fieldset id="custom-brush-fields" class="card-body">
-                    <input name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-white-bg" type="button" value="New Experiment">
-                    <input name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons" type="button" value="Save Experiment">
-                    <br>
-                    <label for="brush-slider">Size:</label>
-                    <input name="slider" id="brush-slider" type="range" min="10" max="100" value="50"><br>
-                    <label for="brush-colour">Drop Colour:</label>
-                    
-                    <div id="brush-colour" type="color"></div> <br>
-                    <label for="colour-hex-value">Hex Value:</label>
-                    <input name="colour" id="colour-hex-value" type="text" value="#000000"><br>
-                    
-                    <label for="download-canvas-filename">Download Image of Experiment:</label><br>
-                    <input name="download-canvas" id="download-canvas-filename" type="text" value="">
-                    
-                    <select name="download-canvas-filetype" id="download-canvas-filetype">
-                        <option value="jpg" >.jpg</option>
-                        <option value="png" >.png</option>
+
+                <div id="custom-brush-card" class="card-body card-white-text-colour fieldset-card">
+
+                    <fieldset id="custom-brush-fields">
+                        <input name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-white-bg" type="button" value="New Experiment">
+                        <input name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons" type="button" value="Save Experiment">
+                        <br>
+                        <label for="brush-slider" >Size:</label><br>
+                        <input name="slider" id="brush-slider" class="form-range" type="range" min="10" max="100" value="50"><br>
+                        <label for="brush-colour">Drop Colour:</label>
                         
-                    </select>
-                    <input name="download-canvas" id="download-canvas-button" class="btn btn-primary normal-buttons-white-bg" type="button" value="Download">
-                </fieldset>
+                        <div id="brush-colour" type="color"></div> <br>
+                        <label for="colour-hex-value">Hex Value:</label>
+                        <input name="colour" id="colour-hex-value" class="form-control form-control-lg " type="text" value="#000000"><br>
+                        
+                        <label for="download-canvas-filename">Download Image of Experiment:</label><br>
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">File Type</button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-label="Dropdown for the image filetype to download">
+                            <li><a class="dropdown-item" href="#">.jpg</a></li>
+                           
+                            <li><a class="dropdown-item" href="#">.png</a></li>
+                            
+                        </ul>
+                        
+                        </div>
+                        <input name="download-canvas" id="download-canvas-button" class="btn btn-primary normal-buttons-white-bg" type="button" value="Download">
+                        <!--input name="download-canvas" id="download-canvas-filename" type="text" value="">
+                        
+                        <select name="download-canvas-filetype" id="download-canvas-filetype">
+                            <option value="jpg" >.jpg</option>
+                            <option value="png" >.png</option>
+                            
+                        </select-->
+                        
+                    </fieldset>
+                </div>
+                
+                
 
             </aside>
         </main>

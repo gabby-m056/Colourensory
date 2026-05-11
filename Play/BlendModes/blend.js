@@ -81,3 +81,9 @@ function mousePressed(){
         b=0;
     }
 }
+
+function selectedMode(){
+    let blendMode = document.getElementById("blend-mode-select");
+    
+
+}

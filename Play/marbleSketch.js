@@ -128,7 +128,7 @@ class Drop{
 function setup(){
     //let w = windowWidth*0.51979166666;
     //let h = windowHeight*0.33125;
-    createCanvas(998,636,mainCanvas);
+    createCanvas(800,600,mainCanvas);
     background(255);
     
 }
