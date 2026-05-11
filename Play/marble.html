@@ -31,53 +31,59 @@
     </header>
     <body>
         <main id="marble-experiment" class="experiments">
-            <section id = "canvas-container">
-                <canvas id="marble-canvas"></canvas>
-            </section>
-            
-            <aside id="custom-brush-container">
-
-                <div id="custom-brush-card" class="card-body card-white-text-colour fieldset-card">
-
-                    <fieldset id="custom-brush-fields">
-                        <input name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-white-bg" type="button" value="New Experiment">
-                        <input name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons" type="button" value="Save Experiment">
-                        <br>
-                        <label for="brush-slider" >Size:</label><br>
-                        <input name="slider" id="brush-slider" class="form-range" type="range" min="10" max="100" value="50"><br>
-                        <label for="brush-colour">Drop Colour:</label>
-                        
-                        <div id="brush-colour" type="color"></div> <br>
-                        <label for="colour-hex-value">Hex Value:</label>
-                        <input name="colour" id="colour-hex-value" class="form-control form-control-lg " type="text" value="#000000"><br>
-                        
-                        <label for="download-canvas-filename">Download Image of Experiment:</label><br>
-                        <div class="input-group mb-3">
-                        <input type="text" class="form-control">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">File Type</button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-label="Dropdown for the image filetype to download">
-                            <li><a class="dropdown-item" href="#">.jpg</a></li>
-                           
-                            <li><a class="dropdown-item" href="#">.png</a></li>
-                            
-                        </ul>
-                        
-                        </div>
-                        <input name="download-canvas" id="download-canvas-button" class="btn btn-primary normal-buttons-white-bg" type="button" value="Download">
-                        <!--input name="download-canvas" id="download-canvas-filename" type="text" value="">
-                        
-                        <select name="download-canvas-filetype" id="download-canvas-filetype">
-                            <option value="jpg" >.jpg</option>
-                            <option value="png" >.png</option>
-                            
-                        </select-->
-                        
-                    </fieldset>
+            <div class="row g-1 container">
+                <div class="col-md-7">
+                    <section id = "canvas-container">
+                        <h2>Digital Marbling</h2>
+                        <canvas id="marble-canvas"></canvas>
+                    </section>
                 </div>
-                
-                
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <aside id="custom-brush-container">
 
-            </aside>
+                        <div id="custom-brush-card" class="card-body card-white-text-colour fieldset-card">
+
+                            <fieldset id="custom-brush-fields">
+                                <input name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-white-bg" type="button" value="New Experiment">
+                                <input name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons" type="button" value="Save Experiment">
+                                <br>
+                                <label for="brush-slider" >Size:</label><br>
+                                <input name="slider" id="brush-slider" class="form-range" type="range" min="10" max="100" value="50"><br>
+                                <label for="brush-colour">Drop Colour:</label>
+                                
+                                <div id="brush-colour" type="color"></div> <br>
+                                <label for="colour-hex-value">Hex Value:</label>
+                                <input name="colour" id="colour-hex-value" class="form-control form-control-lg " type="text" value="#000000"><br>
+                                
+                                <label for="download-canvas-filename">Download Image of Experiment:</label><br>
+                                <div class="input-group mb-3">
+                                <input type="text" class="form-control">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">File Type</button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-label="Dropdown for the image filetype to download">
+                                    <li><a class="dropdown-item" href="#">.jpg</a></li>
+                                
+                                    <li><a class="dropdown-item" href="#">.png</a></li>
+                                    
+                                </ul>
+                                
+                                </div>
+                                <input name="download-canvas" id="download-canvas-button" class="btn btn-primary normal-buttons-white-bg" type="button" value="Download">
+                                <!--input name="download-canvas" id="download-canvas-filename" type="text" value="">
+                                
+                                <select name="download-canvas-filetype" id="download-canvas-filetype">
+                                    <option value="jpg" >.jpg</option>
+                                    <option value="png" >.png</option>
+                                    
+                                </select-->
+                                
+                            </fieldset>
+                        </div>
+                        
+                    </aside> 
+                </div>
+            </div>
+            
         </main>
         <script src="../dataManagement.js"></script>
         <script src="../main.js"></script>

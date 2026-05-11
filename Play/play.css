@@ -1,6 +1,5 @@
 .play-btn-card{
-    width:29.1666666667vw;
-    height:60vh;
+    
     align-items: flex-start;
     padding:1em;
     border-radius: 1em;
@@ -27,3 +26,4 @@
     align-self: flex-start;
     text-align: left;
 }
+
