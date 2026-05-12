@@ -103,7 +103,7 @@ function displaySavedExperiments(){
     */
 }
 
-function addCardRow(cards, rowIndex,section){
+function addCardRow(cards,section){
     let newDivRow = createNewRow();
     for(let card of cards){
         let newCard = createExperimentCard(card);
@@ -119,8 +119,10 @@ function createNewRow(){
 }
 
 function populateCards(cardArray,section){
-    let sortedCards=[];
-  let loopLength = Math.ceil((cardArray.length-1)/4);
+    addCardRow(cardArray,section);
+    //let sortedCards=[];
+
+  /*let loopLength = Math.ceil((cardArray.length)/4);
   console.log("loop length: ", loopLength);
   for(let r=0;r<loopLength;r++){
         let cardRow = [];
@@ -137,8 +139,8 @@ function populateCards(cardArray,section){
         addCardRow(cardRow, r, section);
 
   }
-  console.log("Marble cards: ", sortedCards);
-  return sortedCards;
+  console.log("Marble cards: ", sortedCards);*/
+  //return sortedCards;
 }
 
 function experimentImageCheck(experiment){

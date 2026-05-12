@@ -1,6 +1,7 @@
 :root{
     --circle-blend-mode: normal;
     --circle-colour:#95327f;
+    --bg-colour: #171F30;
 }
 
 
@@ -22,4 +23,22 @@ main{
 }
 #blend-mode-container{
     margin:1em;
+}
+
+.colour-swatch{
+    border-style: solid;
+    border-color: var(--bg-colour);
+    
+    margin:0.25em;
+    width:5vh;
+    height:5vh;
+    border-radius:2em;
+    
+    background-color: turquoise;
+    
+}
+
+.colour-swatch.active{
+    border-style: solid;
+    border: 0.25em solid #ffffff;
 }
