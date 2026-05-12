@@ -5,6 +5,7 @@ submitNameBtn.addEventListener("click", addUserName);
 
 
 function checkUserName(){
+    starting();
     findUserDetails();
     const hello = document.getElementById("hello");
     console.log("Checking for user name in user details: ", userDetailsData);

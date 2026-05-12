@@ -1,4 +1,4 @@
-
+window.addEventListener("load", displaySavedExperiments);
 
 const marbleSection = document.getElementById("section-saved-marble");
 const blendSection = document.getElementById("section-saved-blend");
@@ -6,7 +6,7 @@ let marbleExperiments = [];
 let blendExperiments = [];
 let displayExecuted = false;
 
-function draw(){
+/*function draw(){
     if(canManipulateData && !displayExecuted){
         executeDisplay();
     }
@@ -15,10 +15,12 @@ function draw(){
 function executeDisplay(){
     displaySavedExperiments();
     displayExecuted = true;
-}
+}*/
 
 function displaySavedExperiments(){
+    currentData = JSON.parse(localStorage.getItem(CURRENT_DATA));
     console.log("Displaying saved experiments");
+
     let newDivRow = createNewRow();
     for(let experiment of currentData){
         if(experiment.Type === "marble"){
@@ -140,7 +142,11 @@ function populateCards(cardArray,section){
 }
 
 function experimentImageCheck(experiment){
-    if(experiment.Image.contains("data:image/jpeg;base64")){
+    console.log("Checking experiment image: ", experiment);
+    if(experiment.Image === null || experiment.Image === undefined){
+        return "../Play/playCardImages/marbleImg.jpg";
+    }
+    else if(experiment.Image.toString().includes("data:image/jpeg;base64")){
         return experiment.Image;
     }
     else{
@@ -149,11 +155,12 @@ function experimentImageCheck(experiment){
 }
 
 function createExperimentCard(experiment){
+    console.log(experiment.LastSaved,experiment.Type);
     let newCardInnerHTML =`<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
     <a href="BlendModes/blend.html" class="btn card play-btn-card card-saved-experiment" id="${experiment.Type}-btn-card">
     <img src="${experimentImageCheck(experiment)}" class="card-img-top" alt="...">
     <div class="card-body">
     <h5 class="card-title play-btn-card-title">Marble Experiment</h5>
-    <p class="card-text">Last Saved: ${dateConvert(experiment.Date)}</p></div></a></div>`;
+    <p class="card-text">Last Saved: ${dateConvert(experiment.LastSaved)}</p></div></a></div>`;
     return newCardInnerHTML;
 }

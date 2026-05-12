@@ -1,5 +1,5 @@
-window.addEventListener("load", starting);  
-let canManipulateData = false;
+ 
+
 
 async function starting(){
   canManipulateData = false;
@@ -7,7 +7,9 @@ async function starting(){
     await readData(); 
     await readUserDetails();
     checkforUserDetails();
-    console.log("User details: ", userDetailsData);
+    console.log("User details: ", userDetailsData,typeof(currentData), currentData);
+    console.log("finish data reading");
+    
    
 }
 

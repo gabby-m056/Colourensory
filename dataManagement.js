@@ -16,6 +16,7 @@ let userDetailsData;
 const USER_ID="UserID";
 const EXPERIMENT_ID="ExperimentID";
 const USER_DETAILS="UserDetails";
+const CURRENT_DATA="CurrentData";
 //JS doesn't support enums so this is the best equivalent
 const Type={
 
@@ -46,6 +47,7 @@ async function readData(){
         const response = await fetch(`${REMOTEDB_URL}?table=${USER_EXPERIMENTS_TABLE}`);
         const jsonData = await response.json();
         currentData = checkCurrentData(JSON.parse(jsonData.data));
+        localStorage.setItem(CURRENT_DATA, JSON.stringify(currentData));
         latestValues = currentData[currentData.length - 1];
         //console.log(data);
         console.log("Current Data: ", currentData);
