@@ -39,7 +39,10 @@ main{
     flex-direction: column;
 }
 
-
+h1{
+    font-size: 2.5em;
+    font-weight: 700;
+}
 
 p{
     margin-top: 1rem;
@@ -92,6 +95,8 @@ button{
     align-items: center;
 }
 
+   
+
 .btn-primary,.btn-secondary{
     border: none;
     outline:none;
@@ -138,6 +143,17 @@ button{
     background-color: #fff;
    color:#0d0e19;
 }   
+.play-btn-card{
+    
+    align-items: flex-start;
+    padding:1em;
+    border-radius: 1em;
+   
+
+}
+.play-btn-card:hover{
+    background-color: #D3D2F7;
+}
 
 #hello
 {
@@ -218,4 +234,10 @@ canvas{
     justify-self: center;
     align-self:baseline;
     background-color: #ffffff;
+}
+
+@media (max-width: 767.98px) {
+    .hero {
+        height: 40vh !important;
+    }
 }
