@@ -9,6 +9,7 @@ Avoids using unnecessary storage/running unneeded API calls when not needed,
 such as when just using the canvas drawing features.*/
 let dataBeingUsed = false;
 let currentData = null;
+
 let latestValues;
 let saveToDB = false;
 let userDetailsData;
@@ -33,7 +34,7 @@ class Experiment{
 
     constructor(marksArray){
         this.id=sessionStorage.getItem(EXPERIMENT_ID);
-        this.img=saveCanvasAsImage();
+        this.img=saveCanvasToDataURL();
         this.experimentMarks = marksArray;
         this.type=Type.MARBLE;
     }
@@ -44,7 +45,7 @@ async function readData(){
     try{
         const response = await fetch(`${REMOTEDB_URL}?table=${USER_EXPERIMENTS_TABLE}`);
         const jsonData = await response.json();
-        currentData = JSON.parse(jsonData.data);
+        currentData = checkCurrentData(JSON.parse(jsonData.data));
         latestValues = currentData[currentData.length - 1];
         //console.log(data);
         console.log("Current Data: ", currentData);
@@ -54,6 +55,23 @@ async function readData(){
         console.error("Error fetching data:", e);
     }
 
+}
+
+function checkCurrentData(currentDataArray){
+    let indexToSplice =[];
+    for(let data of currentDataArray){
+        console.log(data.UserID, userDetailsData.UserID);
+        if(data.UserID!==userDetailsData.UserID){
+            indexToSplice.push(currentDataArray.indexOf(data));
+            console.log(currentDataArray.indexOf(data));
+        }
+        
+    }
+    for(let i=indexToSplice.length-1;i>=0;i--){
+        currentDataArray.splice(indexToSplice[i],1);
+    }
+    return currentDataArray;
+    
 }
 
 async function readUserDetails(){
@@ -291,12 +309,10 @@ function isUserIDTaken(generatedID){
     return false;
 }
 
-function saveCanvasAsImage(){
-    const fileName = document.getElementById("download-canvas-filename").value;
-    const fileType = document.getElementById("download-canvas-filetype").value ?? ".jpg";
-    let currentExperimentImage=fileName+fileType;
-    return currentExperimentImage
-   
+function saveCanvasToDataURL(){
+    let dataURL = document.getElementById("marble-canvas").toDataURL("image/jpeg", 1.0);
+    return dataURL;
+
 }
 
 function dateConvert(dateISO){
@@ -310,7 +326,7 @@ function dateConvert(dateISO){
 }
 
 function dateNow(){
-    let tempDateNowObj = new Date().toLocaleString("en-GB", { timeZone: "GB-Eire" });
-    let dateNowObj = new Date(tempDateNowObj).toISOString();
+    //let tempDateNowObj = new Date().toLocaleString("en-GB", { timeZone: "GB-Eire" });
+    let dateNowObj = new Date().toISOString();
     return dateNowObj;
 }

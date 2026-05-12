@@ -284,6 +284,14 @@ async function saveExperiment(){
 
 }
 
+function saveCanvasAsImage(){
+    const fileName = document.getElementById("download-canvas-filename").value;
+    const fileType = document.getElementById("download-canvas-filetype").value ?? ".jpg";
+    let currentExperimentImage=fileName+fileType;
+    return currentExperimentImage
+   
+}
+
 
 /*
 Things to store:
