@@ -8,7 +8,7 @@ such as saving/loading experiments and users.
 Avoids using unnecessary storage/running unneeded API calls when not needed, 
 such as when just using the canvas drawing features.*/
 let dataBeingUsed = false;
-let currentData = null;
+let currentData;
 
 let latestValues;
 let saveToDB = false;
@@ -58,6 +58,7 @@ async function readData(){
 }
 
 function checkCurrentData(currentDataArray){
+    console.log(typeof(currentDataArray[0]));
     let indexToSplice =[];
     for(let data of currentDataArray){
         console.log(data.UserID, userDetailsData.UserID);

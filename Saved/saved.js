@@ -1,12 +1,24 @@
-document.addEventListener("load", displaySavedExperiments);
+
 
 const marbleSection = document.getElementById("section-saved-marble");
 const blendSection = document.getElementById("section-saved-blend");
 let marbleExperiments = [];
 let blendExperiments = [];
+let displayExecuted = false;
+
+function draw(){
+    if(canManipulateData && !displayExecuted){
+        executeDisplay();
+    }
+}
+
+function executeDisplay(){
+    displaySavedExperiments();
+    displayExecuted = true;
+}
 
 function displaySavedExperiments(){
-    
+    console.log("Displaying saved experiments");
     let newDivRow = createNewRow();
     for(let experiment of currentData){
         if(experiment.Type === "marble"){
@@ -20,29 +32,32 @@ function displaySavedExperiments(){
             console.log("Experiment type not recognised: ", experiment.Type);
         }
     }
-    let marbleCards=[];
+    ;
     // row r is r*n to (r+1)*n-1 cards, where n is the number of cards per row (4 in this case)
     //r*4 to (r+1)*4-1
-    for(let r=0;r<Math.ceil(marbleExperiments.length/4);r++){
-        let marbleCardRow = [];
-        for(let i=0;i<4;i++){
-        
-    
-            
-            let newCard = createExperimentCard(marbleExperiments[i]);
-            marbleCardRow.push(newCard);
-            
+    let marbleCards = populateCards(marbleExperiments,marbleSection);
+    let blendCards = populateCards(blendExperiments,blendSection);
+    /*let loopLength = Math.ceil((ar.length-1)/4);
+    console.log("loop length: ", loopLength);
+    for(let r=0;r<loopLength;r++){
+            let marbleCardRow = [];
+            for(let i=0;i<4;i++){
+            let index = r*4 + i;
+            if(index > array.length-1){
+                console.log("array looped through, breaking loop");
+                return;
+            }
+            marbleCardRow.push(array[index]);
+            console.log("Index: ", array[index], "Row: ", r, "Card in row: ", i);
         }
-        if(marbleCardRow.length === 4){
-                
-        }
+            
     }
+    
         let marbleCardRow = [];
         let newCard = createExperimentCard(marbleExperiment);
         marbleCards.push(newCard);
         if(marbleCards.length === 4){
-    }
-
+    }*/
 
     /*
     <div class="row">
@@ -86,10 +101,42 @@ function displaySavedExperiments(){
     */
 }
 
+function addCardRow(cards, rowIndex,section){
+    let newDivRow = createNewRow();
+    for(let card of cards){
+        let newCard = createExperimentCard(card);
+        newDivRow.innerHTML += newCard;
+    }
+    section.appendChild(newDivRow);
+}
+
 function createNewRow(){
     let newDiv = document.createElement("div");
     newDiv.classList.add("row");
     return newDiv;
+}
+
+function populateCards(cardArray,section){
+    let sortedCards=[];
+  let loopLength = Math.ceil((cardArray.length-1)/4);
+  console.log("loop length: ", loopLength);
+  for(let r=0;r<loopLength;r++){
+        let cardRow = [];
+        for(let i=0;i<4;i++){
+          let index = r*4 + i;
+          if(index > cardArray.length-1){
+            console.log("array looped through, breaking loop");
+            return;
+          }
+          cardRow.push(cardArray[index]);
+          console.log("Index: ", cardArray[index], "Row: ", r, "Card in row: ", i);
+        }
+        sortedCards.push(cardRow);
+        addCardRow(cardRow, r, section);
+
+  }
+  console.log("Marble cards: ", sortedCards);
+  return sortedCards;
 }
 
 function experimentImageCheck(experiment){
