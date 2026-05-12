@@ -10,6 +10,7 @@ function checkUserName(){
     console.log("Checking for user name in user details: ", userDetailsData);
     if(userDetailsData !== null && userDetailsData.UserName !== null){
         removeNameInput();
+        addStartButton();
         
         hello.textContent = "Hello " + userDetailsData.UserName + "!";
     }
@@ -36,4 +37,9 @@ function removeNameInput(){
         body.removeChild(element);
     }*/
     body.removeChild(nameElements);
+}
+
+function addStartButton(){
+    const body = document.querySelector("body");
+    body.innerHTML +='<section id="welcome-back-user"><label id="get-started-label" for="get-started">Time to Experiment and Play with Colour!</label><a href="../Play/play.html" name="get-started" id="get-started-button" class="btn btn-primary cta-buttons" role="button">Let\'s Play!</a></section>'
 }

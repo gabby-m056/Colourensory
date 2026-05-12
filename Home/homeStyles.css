@@ -6,6 +6,8 @@
 
 #name-input-container{
     display: flex;
+    justify-content: center;
+    align-items: baseline;
     flex-direction: row;
     gap: 1vw;
     margin-top: 2vh;
@@ -14,7 +16,7 @@
 
 #name-input{
     width:25vw;
-    height: 3.33333333333vh;
+    
     padding: 8px;
     
 }

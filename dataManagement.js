@@ -166,6 +166,7 @@ function savetoDBUserExperiment(experiment){
             ExperimentID: experiment.id,
             UserID: JSON.parse(userIDToSave).UserID,
             Type: experiment.type,
+            LastSaved: dateNow(),
             Image:experiment.img
         }
         console.log("No existing experiment record found for user, creating new record");
@@ -209,12 +210,23 @@ function checkforUserDetails(){
 }
 
 function findUserDetails(){
-    userDetailsData = JSON.parse(localStorage.getItem(USER_DETAILS));
+    try{
+        userDetailsData = JSON.parse(localStorage.getItem(USER_DETAILS));
+        if(userDetailsData.UserName===null && userDetailsData.UserID!==null){
+            console.log("Found user details in localStorage but name is not set: ", userDetailsData);
+        }
+    }
+    catch(e){
+        console.error("Cant find user details in localStorage: ", e);
+        userDetailsData = null;
+    }
+
+    
 }
 
 function createUserDetails(){
     userDetailsData = createUserID();
-        localStorage.setItem(USER_DETAILS, JSON.stringify(userDetailsData));
+    localStorage.setItem(USER_DETAILS, JSON.stringify(userDetailsData));
 }
 
 
@@ -285,4 +297,20 @@ function saveCanvasAsImage(){
     let currentExperimentImage=fileName+fileType;
     return currentExperimentImage
    
+}
+
+function dateConvert(dateISO){
+    let tempDateObj = new Date(dateISO);
+    //Since ISO is displayed in format YYYY-MM-DDTHH:mm:ss.sssZ, we need to convert it to DD/MM/YYYY HH:mm:ss format for it to be more easily readable for users.
+    let dateObj = tempDateObj.toLocaleString("en-GB", { timeZone: "GB-Eire" });
+    //removes comma and replaces it with at for DD/MM/YYYY at HH:mm format from date string to make it more readable for users
+    let displayDate = dateObj.replace(","," at"); 
+    //removes last 3 characters from date string to remove seconds and make it more readable for users
+    return displayDate.substring(0, displayDate.length - 3); 
+}
+
+function dateNow(){
+    let tempDateNowObj = new Date().toLocaleString("en-GB", { timeZone: "GB-Eire" });
+    let dateNowObj = new Date(tempDateNowObj).toISOString();
+    return dateNowObj;
 }

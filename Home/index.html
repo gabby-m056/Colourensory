@@ -16,7 +16,7 @@
     <script src="../libraries/p5/p5.min.js"></script>
     <script src="../libraries/iro.min.js"></script>
     </head>
-    <header>
+    <!--header>
         <nav>
             <p id="nav-title">Colourensory</p>
             <ul class="nav-buttons">
@@ -29,7 +29,7 @@
 
             </ul>
         </nav>
-    </header>
+    </header-->
     <body>
         <section id = "hello-section">
             <div>
@@ -39,9 +39,9 @@
         </section>
         <section >
             <div id="welcome">
-                <p>Welcome to Colourensory!</p>
+                <h2 class="section-heading">Welcome to Colourensory!</h2>
+                <p class="section-explanation" id="welcome-explanation">This is an experiment on how colour is seen and can be played with to make visually appealing creations!</p>
                 <br>
-                <p>This is an experiment on how colour is seen and can be played with to make visually appealing creations!</p>
             </div>
         
         </section>
@@ -49,11 +49,17 @@
         <section id="first-time-user">
             <label id="name-label" for="name-input">To start, please tell us your name?</label>
             <br>
-            <div id="name-input-container">
-                <input name="name" id="name-input" type="text" value="">
-                <input name="name" id="submit-name-button" type="button" value="Submit">
+            <div id="name-input-container" class = "container">
+                <input name="name" id="name-input" class="form-control" type="text" value="">
+                
+                <button name="name-submit" id="submit-name-button" class="btn btn-secondary normal-buttons-dark-bg" type="button">Submit</button>
             </div>
         </section>
+
+        <!--section id="welcome-back-user">
+                <label id="get-started-label" for="get-started"></label>
+            <button name="get-started" id="get-started-button" class="btn btn-primary cta-buttons" type="button">Get Started</button>
+        </section-->
         
         
 

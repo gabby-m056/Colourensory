@@ -27,13 +27,6 @@ let blendModeInfo =[
     "This blend mode compares the colour of the mark you drop with the colour underneath it, lightening the colour underneath based on the dropped colour's RGB value by decreasing the contrast between layers. Try dropping different colours and see what happens!",
     "This blend mode compares the colour of the mark you drop with the colour underneath it, darkening the colour underneath based on the dropped colour's RGB value by increasing the contrast between layers. Try dropping different colours and see what happens!"
 
-
-
-    
-
-    
-
-    
 ]
 
 class Mark{
