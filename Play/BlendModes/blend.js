@@ -1,13 +1,21 @@
 const mainCanvas = document.getElementById("blend-canvas");
 const colourPicker = document.getElementById("brush-colour");
+const selectedBlendMode = document.getElementById("blend-mode-select");
+const colourSwatches = document.getElementById("colour-buttons");
+let currentColourButton;
 let previousBtn;
-let selectedBlendMode = document.getElementById("blend-mode-select");
+
 let currentBlendMode;
 selectedBlendMode.addEventListener("click", (clickEvent)=>{
     currentBlendMode=clickEvent.target;
     console.log(currentBlendMode);
     selectedMode();
-})
+});
+colourSwatches.addEventListener("click", (clickEvent)=>{
+    currentColourButton = clickEvent.target;
+    selectedColour();
+
+});        
 //const cssColour = document.documentElement.style.getPropertyValue("--circle-colour");
 
 let marks = [];
@@ -101,10 +109,7 @@ function mousePressed(){
    
         console.log(blendModes[currentBlendModeNo]);
         console.log(marks.length);
-        
     }
-    
-    
 }
 
 
@@ -119,6 +124,17 @@ function showBlendModeText(){
         let finalTxt= blendModeTxt.charAt(0).toUpperCase() + blendModeTxt.substring(1,blendModeTxt.length);
         return finalTxt
     }
+}
+
+function selectedColour(){
+    let colourBtns = document.getElementsByClassName("colour-swatch")
+    for(let btn of colourBtns){
+        if(btn!==currentColourButton){
+            btn.classList.remove('active');
+        }
+    }
+    currentColourButton.classList.add('active');
+    colourPicker.value = window.getComputedStyle(currentColourButton).getPropertyValue("background-color");
 }
 
 function selectedMode(){
@@ -164,7 +180,6 @@ function selectedMode(){
         currentBlendModeNo=10;
     }
 
-    
     let blendModeExplanation = document.getElementById("blend-mode-explanation");
     blendModeExplanation.textContent=blendModeInfo[currentBlendModeNo];
 }

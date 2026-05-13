@@ -4,8 +4,24 @@
     --bg-colour: #171F30;
 }
 
+#custom-brush-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:1em;
+}
+#custom-brush-fields{
+    display: flex;
+     justify-content: center;
+   align-items: center;
+    flex-wrap: wrap;
 
+}
 
+.blend-field{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
 #brush-colour{
     initial-value: var(--circle-colour);
 }
@@ -28,17 +44,40 @@ main{
 .colour-swatch{
     border-style: solid;
     border-color: var(--bg-colour);
-    
     margin:0.25em;
     width:5vh;
     height:5vh;
     border-radius:2em;
-    
-    background-color: turquoise;
-    
 }
 
 .colour-swatch.active{
     border-style: solid;
-    border: 0.25em solid #ffffff;
+    border: 0.25em solid  #c4c4c4;
 }
+
+#swatch-red{
+    background-color: #ff0000;
+}
+
+#swatch-green{
+    background-color: #00ff00;
+}
+
+#swatch-blue{
+    background-color: #0000ff;
+}
+
+#swatch-magenta{
+    background-color: #ff00ff;
+}
+
+#swatch-yellow{
+    background-color: #ffff00;
+}
+
+#swatch-cyan{
+    background-color: #00ffff;
+}
+
+
+

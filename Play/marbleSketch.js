@@ -30,6 +30,7 @@ let colourPicker = new iro.ColorPicker(document.getElementById("brush-colour"),{
 
 
 });
+const hexInput = document.getElementById("colour-hex-value");
 let wasCanvasClicked = false;
 let droplets =[];
 let saveClicked = false;
@@ -40,6 +41,9 @@ mainCanvas.addEventListener("click",canvasClicked);
 newBtn.addEventListener("click",newCanvas);
 downloadBtn.addEventListener("click",downloadCanvas);
 saveBtn.addEventListener("click",saveExperiment);
+colourPicker.on("input:change", updateHexInput);
+//hexInput.addEventListener("click",changeColour);
+hexInput.addEventListener("input",changeColour);
 
 
 
@@ -130,16 +134,26 @@ function setup(){
     //let h = windowHeight*0.33125;
     createCanvas(760,560,mainCanvas);
     background(255);
+    updateHexInput();
     
 }
 
 function draw(){
     clear();
     background(255);
-    //if(checkHexInput()===false){
-        document.getElementById("colour-hex-value").value = colourPicker.color.hexString;
-    //}
-    
+
+    console.log(document.getElementById("colour-hex-value").value);
+   
+    /*if(checkHexInput()===true){
+        
+        console.log("hex input active");
+    }
+    else{
+        
+        
+        //colourPicker.color = document.getElementById("colour-hex-value").value;
+    }*/
+    //colourPicker.color = document.getElementById("colour-hex-value").value;
     
      
     if(droplets.length===0){
@@ -157,6 +171,11 @@ function draw(){
         saveToDB=false;
     }
     
+}
+
+function updateHexInput(){
+    console.log("called");
+    document.getElementById("colour-hex-value").value = colourPicker.color.hexString;
 }
 
 function hexColourInputActive(){
@@ -182,6 +201,7 @@ function changeColour(){
             if(isAlphaNumeric(changeToColour)===true){
                 let addHashtoColour = "#"+ changeToColour;
                 changeToColour = addHashtoColour;
+                
             }
             else{
                 return;
@@ -191,11 +211,16 @@ function changeColour(){
             if(changeToColour.charAt(0)!=="#"||isAlphaNumeric(changeToColour.substring(1,6))===false){
                 return;
             }
+            else{
+                console.log(changeToColour);
+                
+            }
         }
         else{
             return;
         }
-        colourPicker.color.hexString = changeToColour;
+        colourPicker.color.set(changeToColour);
+        
     
 }
 

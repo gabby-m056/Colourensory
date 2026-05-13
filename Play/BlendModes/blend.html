@@ -60,15 +60,46 @@
                 <canvas id="blend-canvas" width="600px" height="400px"></canvas>
             </section>
             
-            <section id="custom-brush-container">
+            <section  id="custom-brush-container">
                 <fieldset id="custom-brush-fields">
-                    <div class="btn-group">
-                        <div class="colour-swatch"></div>
-                        <div class="colour-swatch active"></div>
+                    
+                        <div class="row w-100">
+                            <div class="col-3">
+                                <button name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-dark-bg blend-field" type="button">New Experiment</button>
+                            </div>
+                           
+                            <div class="col-2">
+                                <input name="colour" class="form-control-color blend-field" id="brush-colour" type="color" value="#95327f">
+                                <label for="brush-colour">Drop Colour:</label>
+                            </div>
+
+                            <div class="btn-group col-4" id="colour-buttons">
+                                <div class="colour-swatch blend-field" id="swatch-red"></div>
+                                <div class="colour-swatch blend-field" id="swatch-green"></div>
+                                <div class="colour-swatch blend-field" id="swatch-blue"></div>
+                                <div class="colour-swatch blend-field" id="swatch-magenta"></div>
+                                <div class="colour-swatch blend-field" id="swatch-yellow"></div>
+                                <div class="colour-swatch blend-field" id="swatch-cyan"></div>
+                            </div>
+                            
+                            <div class="col-3">
+                                <button name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons blend-field" type="button">Save Experiment</button><br>
+                            </div>
+                            
+                        
+                        </div>
+                   <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Experiment Name">
+                            </div>
+                        </div>    
                     </div>
                     
-                    <label for="brush-colour">Drop Colour:</label>
-                    <input name="colour" id="brush-colour" type="color" value="#95327f"> <br>
+                   
+                    
+                                
                     <!--label for="download-canvas-filename">Download Image of Experiment:</label>
                     <input name="download-canvas" id="download-canvas-filename" type="text" value="">
                     
