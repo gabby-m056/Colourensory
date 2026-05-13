@@ -45,3 +45,54 @@
     border-radius: 0.25em;
     border-color: #fff;
 }
+
+.gradient-outer-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    inset:0;
+    margin: auto;
+    filter: blur(80px);
+}
+
+.gradient-inner-container{
+    border-radius: 99999px;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    inset:0;
+    margin: auto;
+    overflow:hidden;
+    background-color: transparent;
+    transform:scale(0.8)
+}
+
+.gradient-bg{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    inset:0;
+    margin: auto;
+    background: conic-gradient(from 0deg at 50% 50%,#c11fb3, #682772, #5945b6, #3a85ad, #5945b6, #682772);
+    animation: gradient-rotate 8s linear infinite;
+}
+
+main{
+    background-color: transparent;
+}
+
+@keyframes gradient-rotate {
+    /*from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }*/
+    0% {
+        transform: rotate(0deg) scale(2);
+    }
+    100% {
+        transform: rotate(1turn) scale(2);
+    }
+}
