@@ -20,11 +20,11 @@
         <nav class="fixed-top">
             <p id="nav-title">Colourensory</p>
             <ul class="nav-buttons">
-                <li><a href="../Home/index.html">Home</a>
+                <li><a href="../../Home/index.html">Home</a>
                 </li>
                 <li><a href = "../play.html">Play</a>
                 </li>
-                <li><a href="../Saved/saved.html">Saved Experiments</a>
+                <li><a href="../../Saved/saved.html">Saved Experiments</a>
                 </li>
 
             </ul>
@@ -60,20 +60,27 @@
                 <canvas id="blend-canvas" width="600px" height="400px"></canvas>
             </section>
             
-            <section  id="custom-brush-container">
+            <section  id="custom-brush-container" class="container">
                 <fieldset id="custom-brush-fields">
                     
-                        <div class="row w-100">
-                            <div class="col-3">
-                                <button name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-dark-bg blend-field" type="button">New Experiment</button>
+                        <div class="row w-100 justify-content-center">
+                            <!--div class="col-1"></div-->
+                            <div class="col-2">
+                                <button name="new-canvas" id="new-canvas-button" class="btn btn-secondary normal-buttons-dark-bg" type="button">New Experiment</button>
                             </div>
                            
-                            <div class="col-2">
-                                <input name="colour" class="form-control-color blend-field" id="brush-colour" type="color" value="#95327f">
-                                <label for="brush-colour">Drop Colour:</label>
-                            </div>
+                            
 
-                            <div class="btn-group col-4" id="colour-buttons">
+                            <div class="btn-group col-6 justify-content-center" id="colour-buttons">
+                                <div class="blend-field align-self-start" id="colour-picker-container">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="blend-colour-hex-input" placeholder="Hex Value" aria-label="Hex Value input field for the colour to drop">
+                                        <input name="colour" class="form-control-color" id="brush-colour" type="color" value="#95327f">
+                                    </div>
+                                
+                                
+                                <label for="brush-colour">Drop Colour:</label>
+                                </div>
                                 <div class="colour-swatch blend-field" id="swatch-red"></div>
                                 <div class="colour-swatch blend-field" id="swatch-green"></div>
                                 <div class="colour-swatch blend-field" id="swatch-blue"></div>
@@ -82,18 +89,29 @@
                                 <div class="colour-swatch blend-field" id="swatch-cyan"></div>
                             </div>
                             
-                            <div class="col-3">
-                                <button name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons blend-field" type="button">Save Experiment</button><br>
+                            <div class="col-2">
+                                <button name="save-canvas" id="save-canvas-button" class="btn btn-primary cta-buttons " type="button">Save Experiment</button><br>
                             </div>
-                            
+                            <!--div class="col-1"></div-->
                         
                         </div>
                    <br>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Experiment Name">
-                            </div>
+                    <div class="row w-100 justify-content-end">
+                        <div class="col-6 justify-content-end" id="download-blend-canvas">
+                             <label for="download-canvas-filename">Download Image of Experiment:</label><br>
+                                <div class="input-group mb-3 w-60">
+                                <input type="text" class="form-control">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">File Type</button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-label="Dropdown for the image filetype to download">
+                                    <li><a class="dropdown-item" href="#">.jpg</a></li>
+                                
+                                    <li><a class="dropdown-item" href="#">.png</a></li>
+                                    
+                                </ul>
+                                
+                                </div>
+                                <input name="download-canvas" id="download-canvas-button" class="btn btn-secondary normal-buttons-dark-bg" type="button" value="Download">
+                            
                         </div>    
                     </div>
                     
@@ -114,8 +132,8 @@
 
             </section>
         </main>
-        <!--script src="../dataManagement.js"></script>
-        <script src="../main.js"></script-->
+        <script src="../../dataManagement.js"></script>
+        <script src="../../main.js"></script>
         <script src="blend.js"></script>
     </body>
 </html>

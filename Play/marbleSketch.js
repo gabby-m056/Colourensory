@@ -164,11 +164,15 @@ function draw(){
         d.drawDrop();
     }
     if(saveClicked && saveToDB){
-        let experimentToSave = new Experiment(droplets);
+        let experimentToSave = new Experiment(droplets,Type.MARBLE);
         console.log(experimentToSave);
         saveExperimentToDB(experimentToSave);
+        
+
+        
         saveClicked=false;
         saveToDB=false;
+        starting();
     }
     
 }
@@ -302,10 +306,7 @@ async function saveExperiment(){
         console.log("Saving experiment...");
         saveClicked = true;
         await dataInitiated();
-    }
-    
-
-    
+    }  
 
 }
 

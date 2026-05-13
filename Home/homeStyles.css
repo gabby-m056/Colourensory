@@ -4,6 +4,22 @@
     
 }
 
+#welcome-back-user{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#get-started-button{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width:20vw;
+    height:8vh;
+    font-weight: 600;
+    font-size:1.5em;
+}
+
 #name-input-container{
     display: flex;
     justify-content: center;

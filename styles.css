@@ -216,10 +216,7 @@ section{
     border-bottom-left-radius:0;
 }
 
-#custom-brush-container{
-    justify-content: center;
-    
-}
+
 
 .nav-buttons a:hover{
     color: #d3d2f7;

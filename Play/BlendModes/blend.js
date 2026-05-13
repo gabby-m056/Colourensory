@@ -2,6 +2,9 @@ const mainCanvas = document.getElementById("blend-canvas");
 const colourPicker = document.getElementById("brush-colour");
 const selectedBlendMode = document.getElementById("blend-mode-select");
 const colourSwatches = document.getElementById("colour-buttons");
+const downloadBtn = document.getElementById("download-canvas-button");
+const saveBtn = document.getElementById("save-canvas-button");
+let saveClicked = false;
 let currentColourButton;
 let previousBtn;
 
@@ -37,18 +40,23 @@ let blendModeInfo =[
 
 ]
 
+downloadBtn.addEventListener("click",downloadCanvas);
+saveBtn.addEventListener("click",saveExperiment);
+
 class Mark{
     
     x;
     y;
     colour;
     blendModeNo;
+    diameter;
 
     constructor(x, y, colour,blendModeNo){
         this.x = x;
         this.y = y;
         this.colour = colour;
         this.blendModeNo = blendModeNo;
+        this.diameter = 250;
     }
 
  
@@ -59,7 +67,7 @@ class Mark{
         fill(this.colour);
         blendMode(blendModes[this.blendModeNo]);
         
-        circle(this.x,this.y,250);
+        circle(this.x,this.y,this.diameter);
     }
 }
 
@@ -67,7 +75,7 @@ function setup(){
     
     let canvas = createCanvas(1000,600,mainCanvas);
     blendModes = [DARKEST, LIGHTEST, DIFFERENCE, MULTIPLY, EXCLUSION, SCREEN, OVERLAY, HARD_LIGHT, SOFT_LIGHT, DODGE, BURN];
-    
+    background(255);
   
 }
 
@@ -81,6 +89,7 @@ function randomColour()
 
 function draw(){
     clear();
+    background(255);
      document.getElementById("blend-mode-heading").innerHTML = "Blend Mode: "+ showBlendModeText();
     /*if(marks.length>0){
         marks[marks.length-1].x = mouseX;
@@ -91,13 +100,16 @@ function draw(){
         m.drawMark();
 
     }
-   
+   if(saveClicked && saveToDB){
+        let experimentToSave = new Experiment(marks,Type.BLEND);
+        console.log(experimentToSave);
+        saveExperimentToDB(experimentToSave);
+        
+        saveClicked=false;
+        saveToDB=false;
+        //starting();
+   }
     
-
-    /*if(keyCode===ENTER){
-        console.log("Enter key pressed");
-        document.getElementById("mark-1").style.backgroundColor = "#95327f";
-    }*/
 }
 
 function mousePressed(){
@@ -182,4 +194,24 @@ function selectedMode(){
 
     let blendModeExplanation = document.getElementById("blend-mode-explanation");
     blendModeExplanation.textContent=blendModeInfo[currentBlendModeNo];
+}
+
+function downloadCanvas(){
+    
+    let imageToSave = saveCanvasAsImage();
+    saveCanvas(imageToSave[0],imageToSave[1]);
+
+}
+
+async function saveExperiment(){
+    if(marks.length==0){
+        console.log("Your canvas is empty! Draw something before saving.");
+        return;
+    }
+    else{
+        console.log("Saving experiment...");
+        saveClicked = true;
+        await dataInitiated();
+    }  
+
 }

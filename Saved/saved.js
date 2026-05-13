@@ -6,19 +6,12 @@ let marbleExperiments = [];
 let blendExperiments = [];
 let displayExecuted = false;
 
-/*function draw(){
-    if(canManipulateData && !displayExecuted){
-        executeDisplay();
-    }
-}
-
-function executeDisplay(){
-    displaySavedExperiments();
-    displayExecuted = true;
-}*/
+//note - localstorage does not currently update in real time, only on page load, would need to add event listener to storage event to update in real time if user saves experiment while on saved page
 
 function displaySavedExperiments(){
+    starting();
     currentData = JSON.parse(localStorage.getItem(CURRENT_DATA));
+    console.log("Current data: ", currentData);
     console.log("Displaying saved experiments");
 
     let newDivRow = createNewRow();

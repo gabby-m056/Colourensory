@@ -1,6 +1,7 @@
 
 .fieldset-card{
     /*display: flex;*/
+    justify-content: center;
     font-weight: 300;
     margin:1em;
     border-radius: 1em;
@@ -28,12 +29,13 @@
 
 #new-canvas-button{
     
-    margin-right:1em ;
+    margin-right:1em;
+    justify-self: center;
 }
 
 #save-canvas-button{
     margin-left:1em;
-    justify-self: flex-end;
+    justify-self: center;
 }
 
 #canvas-button-container{

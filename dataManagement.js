@@ -17,6 +17,7 @@ const USER_ID="UserID";
 const EXPERIMENT_ID="ExperimentID";
 const USER_DETAILS="UserDetails";
 const CURRENT_DATA="CurrentData";
+
 //JS doesn't support enums so this is the best equivalent
 const Type={
 
@@ -33,11 +34,11 @@ class Experiment{
     experimentMarks=[];
     type;
 
-    constructor(marksArray){
+    constructor(marksArray,type){
         this.id=sessionStorage.getItem(EXPERIMENT_ID);
-        this.img=saveCanvasToDataURL();
+        this.img=saveCanvasToDataURL(type);
         this.experimentMarks = marksArray;
-        this.type=Type.MARBLE;
+        this.type=type;
     }
 }
 
@@ -60,7 +61,8 @@ async function readData(){
 }
 
 function checkCurrentData(currentDataArray){
-    console.log(typeof(currentDataArray[0]));
+    findUserDetails();
+    console.log("user details data in check current data:", userDetailsData);
     let indexToSplice =[];
     for(let data of currentDataArray){
         console.log(data.UserID, userDetailsData.UserID);
@@ -193,6 +195,7 @@ function savetoDBUserExperiment(experiment){
         console.log("No existing experiment record found for user, creating new record");
 
         addData(USER_EXPERIMENTS_TABLE, experimentData);
+       
 
     }
 }
@@ -219,6 +222,7 @@ function savetoDBExperimentDrops(experiment){
 async function saveExperimentToDB(experiment){
     await savetoDBUserExperiment(experiment);
     await savetoDBExperimentDrops(experiment);
+    
 }
 
 function checkforUserDetails(){
@@ -312,8 +316,17 @@ function isUserIDTaken(generatedID){
     return false;
 }
 
-function saveCanvasToDataURL(){
-    let dataURL = document.getElementById("marble-canvas").toDataURL("image/jpeg", 1.0);
+function saveCanvasToDataURL(type){
+    let canvas;
+    if(type===Type.MARBLE){
+        canvas = document.getElementById("marble-canvas");
+    }
+    else{
+        canvas = document.getElementById("blend-canvas");
+    }
+
+
+    let dataURL = canvas.toDataURL("image/jpeg", 1.0);
     return dataURL;
 
 }

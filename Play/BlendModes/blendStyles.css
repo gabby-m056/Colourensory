@@ -4,24 +4,39 @@
     --bg-colour: #171F30;
 }
 
+#blend-canvas{
+    background-color: #fff;
+}
+
 #custom-brush-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin:1em;
+   padding:0%;
+    margin:1rem;
 }
 #custom-brush-fields{
     display: flex;
-     justify-content: center;
-   align-items: center;
+    padding-left: 5em;
+    padding-right: 2em;
+    justify-items: center;
+    align-items: center;
     flex-wrap: wrap;
 
 }
 
-.blend-field{
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+.blend-canvas-buttons{
+    margin: 0.5em;
 }
+
+.blend-field{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+#colour-picker-container{
+    flex-wrap: nowrap;
+}
+#blend-colour-hex-input{
+    width:8em;
+}
+
 #brush-colour{
     initial-value: var(--circle-colour);
 }
@@ -39,6 +54,7 @@ main{
 }
 #blend-mode-container{
     margin:1em;
+    
 }
 
 .colour-swatch{
@@ -60,24 +76,27 @@ main{
 }
 
 #swatch-green{
-    background-color: #00ff00;
+    background-color: rgb(0, 255, 0);
 }
 
 #swatch-blue{
-    background-color: #0000ff;
+    background-color: rgb(0, 0, 255);
 }
 
 #swatch-magenta{
-    background-color: #ff00ff;
+    background-color: rgb(255, 0, 255);
 }
 
 #swatch-yellow{
-    background-color: #ffff00;
+    background-color: rgb(255, 255, 0);
 }
 
 #swatch-cyan{
-    background-color: #00ffff;
+    background-color: rgb(0, 255, 255);
 }
 
+#download-blend-canvas{
+    padding-right: 2em;
+}
 
 
