@@ -112,7 +112,14 @@ function createNewRow(){
 }
 
 function populateCards(cardArray,section){
-    addCardRow(cardArray,section);
+    if(cardArray.length===0){
+        section.innerHTML+=`<p class="no-experiments-text">You have no saved experiments!</p>`;
+        //section.innerHTML+=
+    }
+    else{
+        
+        addCardRow(cardArray,section);
+    }
     //let sortedCards=[];
 
   /*let loopLength = Math.ceil((cardArray.length)/4);

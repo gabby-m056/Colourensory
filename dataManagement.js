@@ -9,10 +9,11 @@ Avoids using unnecessary storage/running unneeded API calls when not needed,
 such as when just using the canvas drawing features.*/
 let dataBeingUsed = false;
 let currentData;
-
-let latestValues;
+let latestExperimentValues;
+let latestUserID;
 let saveToDB = false;
 let userDetailsData;
+let allUserDetails;
 const USER_ID="UserID";
 const EXPERIMENT_ID="ExperimentID";
 const USER_DETAILS="UserDetails";
@@ -45,11 +46,12 @@ class Experiment{
 async function readData(){
 
     try{
+        console.log("read data reached");
         const response = await fetch(`${REMOTEDB_URL}?table=${USER_EXPERIMENTS_TABLE}`);
         const jsonData = await response.json();
         currentData = checkCurrentData(JSON.parse(jsonData.data));
         localStorage.setItem(CURRENT_DATA, JSON.stringify(currentData));
-        latestValues = currentData[currentData.length - 1];
+        latestExperimentValues = currentData[currentData.length - 1];
         //console.log(data);
         console.log("Current Data: ", currentData);
        
@@ -79,12 +81,29 @@ function checkCurrentData(currentDataArray){
     
 }
 
+
+function getLatestUserID(tempUserDetails){
+    console.log("temp user detaisl to get user id ",tempUserDetails);
+    latestUserID = tempUserDetails[tempUserDetails.length - 1].UserID;
+
+}
+
+/*function getAllUserIDS(tempUserDetails){
+
+only gonna code this if its needed
+}*/
+
 async function readUserDetails(){
     try{
         const response = await fetch(`${REMOTEDB_URL}?table=${USER_DETAILS_TABLE}`);
         const jsonUserDetails = await response.json();
         //localStorage.setItem(USER_DETAILS, jsonUserDetails.data);
         console.log("User Details: ", jsonUserDetails);
+        
+        let tempUserDetails = JSON.parse(jsonUserDetails.data);
+        console.log("parsed", tempUserDetails)
+
+        getLatestUserID(tempUserDetails);
 
     }
     catch (e) {
@@ -230,7 +249,8 @@ function checkforUserDetails(){
     findUserDetails();
     console.log("Checking for user details in localStorage: ", userDetailsData);
     if(userDetailsData===null){
-       createUserDetails();
+        return false;
+       
     }
 }
 
@@ -267,7 +287,7 @@ function checkForExperimentID(){
     if(id===null){
         
         try{
-            id = createID(latestValues.ExperimentID.toString());
+            id = createID(latestExperimentValues.ExperimentID.toString());
             sessionStorage.setItem(EXPERIMENT_ID, id);
             console.log("New experiment created with ID: " + id);
         }
@@ -280,12 +300,23 @@ function checkForExperimentID(){
     }
         
 }  
-  
 
+function createUserID(){
+    let generatedID = createID(latestUserID);
+    console.log("Generated user ID: " + generatedID);
+    
+    let userDetails ={
+        UserID: generatedID,
+        UserName: null,
+    }
+    return userDetails
+}
+  
+/* commenting out for now - may revert back to this if data duplication happens
 function createUserID(){
     let idAlreadyTaken = false;
     do{
-        let generatedID = createID(latestValues.UserID.toString());
+        let generatedID = createID(latestUserID);
         idAlreadyTaken = isUserIDTaken(generatedID);
         console.log("Generated user ID: " + generatedID + " Taken? " + idAlreadyTaken);
         if(idAlreadyTaken===false){
@@ -300,8 +331,9 @@ function createUserID(){
     while(idAlreadyTaken===true)
     
 
-}
+}*/
 
+//not using for now but may need latwe
 function isUserIDTaken(generatedID){
     
     for(i=0;i<currentData.length;i++){

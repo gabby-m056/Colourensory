@@ -1,3 +1,8 @@
+section{
+    align-items: center;
+    justify-content:center;
+}
+
 #first-time-user {
    align-items: center;
     flex-direction: column;
@@ -76,6 +81,17 @@
     margin: auto;
     background: conic-gradient(from 0deg at 50% 50%,#c11fb3, #682772, #5945b6, #3a85ad, #5945b6, #682772);
     animation: gradient-rotate 8s linear infinite;
+}
+
+.start-spinner{
+    color:#fff;
+    width:12em;
+    height:12em;
+    border-width:2rem;
+}
+
+#loading-text{
+    margin-top: 2em;
 }
 
 main{

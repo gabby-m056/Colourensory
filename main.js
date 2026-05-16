@@ -1,16 +1,37 @@
+ let stopSpinner = false
+
  
 
 
 async function starting(){
   canManipulateData = false;
   console.log("starting function called");
-    await readData(); 
-    await readUserDetails();
-    checkforUserDetails();
+  let isExistingUser = checkforUserDetails();
+    
+    if(!isExistingUser){
+      console.log("new user");
+      await readUserDetails();
+      createUserDetails();
+    }
+    console.log("starting ended");
+   
+}
+
+async function continueLoad(){
+  await readData(); 
     console.log("User details: ", userDetailsData,typeof(currentData), currentData);
     console.log("finish data reading");
     
-   
+    //stopSpinner = true;
+}
+
+function eventDispatcher(){
+  const finishedLoadEvent = new CustomEvent("finished");
+  window.dispatchEvent("finished");
+}
+
+function isLoadingComplete(){
+  return stopSpinner
 }
 
 function enableDataManipulation(){
@@ -47,5 +68,18 @@ function testLoop(){
           
   }
 }
+
+function testDetailsSetToStorage(){
+  let userDetails ={
+    UserID: "U0000003",
+    UserName: "Gabby",
+  }
+  localStorage.setItem(USER_DETAILS,JSON.stringify(userDetails));
+}
+
+function removeTestDetails(){
+  localStorage.removeItem(USER_DETAILS)
+}
+
 
 

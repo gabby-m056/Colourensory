@@ -2,3 +2,8 @@
     margin:0.5rem;
     text-align: left;
 }
+
+.no-experiments-text{
+    justify-self: center;
+    align-self: center;
+}
